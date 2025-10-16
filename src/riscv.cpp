@@ -142,6 +142,7 @@ void Riscv::handleSyscalls() {
                 __asm__ volatile ("mv t0, %0" : : "r"(returnValue));
                 __asm__ volatile ("sw t0, 80(x8)");
                 break;
+
             case 0x24:
                 //sem_signal
                 __asm__ volatile ("mv %0, a1" : "=r" (semHandlePtr));
@@ -153,23 +154,6 @@ void Riscv::handleSyscalls() {
                 __asm__ volatile ("mv t0, %0" : : "r"(returnValue));
                 __asm__ volatile ("sw t0, 80(x8)");
                 break;
-
-            case 0x41:
-                //getc
-                returnValue = __getc();
-                __asm__ volatile ("mv t0, %0" : : "r"(returnValue));
-                __asm__ volatile ("sw t0, 80(x8)");
-                break;
-
-            case 0x42:
-                //putc
-                char c;
-                __asm__ volatile ("mv %0, a1" : "=r" (c));
-                __putc(c);
-                break;
-
-            default:
-                break;
         }
 
         w_sstatus(sstatus);
@@ -178,7 +162,7 @@ void Riscv::handleSyscalls() {
     else
     {
         // unexpected trap cause
-        printString("ERROR! SCAUSE:");
+        printString("ERROR! SCAUSE: ");
         printInteger(scause);
         printString("\n");
     }

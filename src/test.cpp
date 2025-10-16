@@ -5,6 +5,7 @@
 #include "../h/ccb.hpp"
 #include "../h/workers.hpp"
 #include "../h/print.hpp"
+#include "../h/Semaphore.hpp"
 
 int main()
 {
@@ -13,10 +14,10 @@ int main()
     coroutines[0] = CCB::createCoroutine(nullptr);
     CCB::running = coroutines[0];
 
-    coroutines[1] = CCB::createCoroutine(workerBodyA);
-    printString("CoroutineA created\n");
-    coroutines[2] = CCB::createCoroutine(workerBodyB);
-    printString("CoroutineB created\n");
+    coroutines[1] = CCB::createCoroutine(workerBodyC);
+    printString("CoroutineC created\n");
+    coroutines[2] = CCB::createCoroutine(workerBodyD);
+    printString("CoroutineD created\n");
 
     while (!(coroutines[1]->isFinished() &&
              coroutines[2]->isFinished()))

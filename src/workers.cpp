@@ -5,6 +5,7 @@
 #include "../lib/hw.h"
 #include "../h/ccb.hpp"
 #include "../h/print.hpp"
+#include "../h/Semaphore.hpp"
 
 static uint64 fibonacci(uint64 n)
 {
@@ -76,6 +77,30 @@ void workerBodyB()
         printString("\n");
     }
 
+    CCB::running->setFinished(true);
+    CCB::yield();
+}
+
+static int a = 0;
+
+void workerBodyC() {
+    for (int i = 0; i < 10; i++) {
+        a += 1000;
+        printInteger(a);
+        printString("\n");
+        CCB::yield();
+    }
+    CCB::running->setFinished(true);
+    CCB::yield();
+}
+
+void workerBodyD() {
+    for (int i = 0; i < 10; i++) {
+        a -= 1000;
+        printInteger(a);
+        printString("\n");
+        CCB::yield();
+    }
     CCB::running->setFinished(true);
     CCB::yield();
 }

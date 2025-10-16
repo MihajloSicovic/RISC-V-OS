@@ -9,4 +9,8 @@ extern void workerBodyA();
 
 extern void workerBodyB();
 
+extern void workerBodyC();
+
+extern void workerBodyD();
+
 #endif //OS1_VEZBE07_RISCV_CONTEXT_SWITCH_1_SYNCHRONOUS_WORKERS_HPP

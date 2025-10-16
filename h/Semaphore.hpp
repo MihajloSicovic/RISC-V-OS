@@ -7,28 +7,43 @@
 
 #include "list.hpp"
 #include "ccb.hpp"
+#include "MemoryAllocator.hpp"
 
 class Semaphore {
 public:
-    explicit Semaphore(unsigned int init = 1) : val(init), closed(false) {}
-    virtual ~Semaphore();
+    virtual ~Semaphore() = default;
 
+    static Semaphore* createSemaphore(unsigned int init = 1);
     int wait();
     int signal();
     int close();
 
-    int getValue() const { return val; }
+    unsigned int getValue() const { return val; }
+
+    void* operator new(size_t size) {
+        return MemoryAllocator::Instance()->mem_alloc(size);
+    }
+    void* operator new[](size_t size) {
+        return MemoryAllocator::Instance()->mem_alloc(size);
+    }
+
+    void operator delete(void *ptr) {
+        MemoryAllocator::Instance()->mem_free(ptr);
+    }
+    void operator delete[](void *ptr) {
+        MemoryAllocator::Instance()->mem_free(ptr);
+    }
 
 protected:
+    explicit Semaphore(unsigned int init = 1) : val(init), closed(false) {}
+
     void block();
     void unblock();
 
 private:
-    int val;
+    unsigned int val;
     bool closed;
     List<CCB> blocked;
 };
-
-int lck = 0; // lock
 
 #endif //PROJECT_BASE_V1_1_SEMAPHORE_H

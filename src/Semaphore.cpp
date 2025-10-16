@@ -5,17 +5,28 @@
 #include "../h/Semaphore.hpp"
 #include "../h/ccb.hpp"
 
+Semaphore* Semaphore::createSemaphore(unsigned int init) {
+    return new Semaphore(init);
+}
+
 int Semaphore::wait() {
     if (closed) return -1;
 
-    if (--val < 0) block();
+    if (--val < 0) {
+        blocked.addLast(CCB::running);
+        CCB::running = Scheduler::get();
+        CCB::dispatch();
+    }
     return 0;
 }
 
 int Semaphore::signal() {
     if (closed) return -1;
 
-    if (++val <= 0) unblock();
+    if (++val <= 0) {
+        CCB* thread = blocked.removeFirst();
+        Scheduler::put(thread);
+    }
     return 0;
 }
 
@@ -32,7 +43,7 @@ int Semaphore::close() {
 void Semaphore::block() {
     blocked.addLast(CCB::running);
     CCB::running = Scheduler::get();
-    thread_dispatch();
+    CCB::dispatch();
 }
 
 void Semaphore::unblock() {

@@ -7,6 +7,8 @@
 
 #include "../lib/hw.h"
 #include "scheduler.hpp"
+#include "MemoryAllocator.hpp"
+#include "Semaphore.hpp"
 
 // Coroutine Control Block
 class CCB
@@ -25,6 +27,22 @@ public:
     static void yield();
 
     static CCB *running;
+
+    void* operator new(size_t size) {
+        return MemoryAllocator::Instance()->mem_alloc(size);
+    }
+    void* operator new[](size_t size) {
+        return MemoryAllocator::Instance()->mem_alloc(size);
+    }
+
+    void operator delete(void *ptr) {
+        MemoryAllocator::Instance()->mem_free(ptr);
+    }
+    void operator delete[](void *ptr) {
+        MemoryAllocator::Instance()->mem_free(ptr);
+    }
+
+    static void dispatch();
 
 private:
     explicit CCB(Body body) :
@@ -50,8 +68,6 @@ private:
     bool finished;
 
     static void contextSwitch(Context *oldContext, Context *runningContext);
-
-    static void dispatch();
 
     static uint64 constexpr STACK_SIZE = 1024;
 };

@@ -14,6 +14,16 @@ void* mem_alloc(size_t size) {
     return result;
 }
 
+int mem_free(void* p) {
+    __asm__ volatile("li a0, 0x02");
+    __asm__ volatile("mv a1, %0" : : "r" (p));
+    __asm__ volatile("ecall");
+
+    int result;
+    __asm__ volatile("mv %0, a0" : "=r" (result));
+    return result;
+}
+
 size_t mem_get_free_space() {
     __asm__ volatile("li a0, 0x03");
     __asm__ volatile("ecall");

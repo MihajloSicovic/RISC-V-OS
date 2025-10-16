@@ -90,6 +90,8 @@ public:
         if (!tail) { return 0; }
         return tail->data;
     }
+
+    bool empty() { return head == nullptr; }
 };
 
 #endif //OS1_VEZBE07_RISCV_CONTEXT_SWITCH_1_SYNCHRONOUS_LIST_HPP

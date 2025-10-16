@@ -82,6 +82,17 @@ public:
     // write register sstatus
     static void w_sstatus(uint64 sstatus);
 
+    static void handleSyscalls();
+
+    static void stvecTrap();
+
+    //read a0 register
+    static uint64 r_a0();
+
+    //write to a0 register
+    static void w_a0(uint64 a0);
+
+
 private:
 
 };
@@ -177,5 +188,19 @@ inline void Riscv::w_sstatus(uint64 sstatus)
 {
     __asm__ volatile ("csrw sstatus, %[sstatus]" : : [sstatus] "r"(sstatus));
 }
+
+inline uint64 Riscv::r_a0()
+{
+    uint64 volatile a0;
+    __asm__ volatile ("mv %0, a0" : "=r"(a0));
+    return a0;
+}
+
+
+inline void Riscv::w_a0(uint64 a0)
+{
+    __asm__ volatile ("mv a0, %0" : : "r"(a0));
+}
+
 
 #endif //OS1_VEZBE07_RISCV_CONTEXT_SWITCH_1_SYNCHRONOUS_RISCV_HPP

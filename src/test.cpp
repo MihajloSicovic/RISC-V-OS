@@ -6,11 +6,18 @@
 #include "../h/workers.hpp"
 #include "../h/print.hpp"
 #include "../h/Semaphore.hpp"
+#include "../h/syscall_c.hpp"
+#include "../h/riscv.hpp"
 
 int main()
 {
+    Riscv::w_stvec((uint64) &Riscv::stvecTrap);
+
+    MemoryAllocator* m = MemoryAllocator::Instance();
+    void* res = mem_alloc(100);
     CCB *coroutines[3];
 
+    m->mem_free(res);
     coroutines[0] = CCB::createCoroutine(nullptr);
     CCB::running = coroutines[0];
 

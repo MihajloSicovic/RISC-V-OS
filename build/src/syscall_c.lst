@@ -1,4 +1,4 @@
-GAS LISTING /tmp/cc2AjMLb.s 			page 1
+GAS LISTING /tmp/ccNEzosr.s 			page 1
 
 
    1              		.file	"syscall_c.cpp"
@@ -58,7 +58,7 @@ GAS LISTING /tmp/cc2AjMLb.s 			page 1
   10              	    __asm__ volatile("ecall");
   47              		mv a1, a0
   48              	# 0 "" 2
-GAS LISTING /tmp/cc2AjMLb.s 			page 2
+GAS LISTING /tmp/ccNEzosr.s 			page 2
 
 
   49              		.loc 1 10 5 is_stmt 1 discriminator 4
@@ -118,7 +118,7 @@ GAS LISTING /tmp/cc2AjMLb.s 			page 1
   21:src/syscall_c.cpp ****     size_t result;
   95              		ecall
   96              	# 0 "" 2
-GAS LISTING /tmp/cc2AjMLb.s 			page 3
+GAS LISTING /tmp/ccNEzosr.s 			page 3
 
 
   97              		.loc 1 21 5 is_stmt 1
@@ -178,7 +178,7 @@ GAS LISTING /tmp/cc2AjMLb.s 			page 1
  143              	# 31 "src/syscall_c.cpp" 1
   32              	    return result;
  144              		mv a0, a0
-GAS LISTING /tmp/cc2AjMLb.s 			page 4
+GAS LISTING /tmp/ccNEzosr.s 			page 4
 
 
  145              	# 0 "" 2
@@ -238,7 +238,7 @@ GAS LISTING /tmp/cc2AjMLb.s 			page 1
  193              	# 0 "" 2
  194              		.loc 1 40 5 is_stmt 1
  195              		.loc 1 40 30 is_stmt 0
-GAS LISTING /tmp/cc2AjMLb.s 			page 5
+GAS LISTING /tmp/ccNEzosr.s 			page 5
 
 
  196              	# 40 "src/syscall_c.cpp" 1
@@ -298,7 +298,7 @@ GAS LISTING /tmp/cc2AjMLb.s 			page 1
  241              		ecall
  242              	# 0 "" 2
  243              		.loc 1 51 5 is_stmt 1
-GAS LISTING /tmp/cc2AjMLb.s 			page 6
+GAS LISTING /tmp/ccNEzosr.s 			page 6
 
 
   52:src/syscall_c.cpp ****     __asm__ volatile("mv %0, a0" : "=r" (result));
@@ -358,7 +358,7 @@ GAS LISTING /tmp/cc2AjMLb.s 			page 1
  292 00fc 13010101 		addi	sp,sp,16
  293              		.cfi_def_cfa_offset 0
  294 0100 67800000 		jr	ra
-GAS LISTING /tmp/cc2AjMLb.s 			page 7
+GAS LISTING /tmp/ccNEzosr.s 			page 7
 
 
  295              		.cfi_endproc
@@ -418,7 +418,7 @@ GAS LISTING /tmp/cc2AjMLb.s 			page 1
   70:src/syscall_c.cpp **** }
  341              		.loc 1 70 1 is_stmt 0
  342              	#NO_APP
-GAS LISTING /tmp/cc2AjMLb.s 			page 8
+GAS LISTING /tmp/ccNEzosr.s 			page 8
 
 
  343 0124 1B050500 		sext.w	a0,a0
@@ -478,7 +478,7 @@ GAS LISTING /tmp/cc2AjMLb.s 			page 1
  390              		.loc 1 79 5 is_stmt 1
   80:src/syscall_c.cpp **** }
  391              		.loc 1 80 1 is_stmt 0
-GAS LISTING /tmp/cc2AjMLb.s 			page 9
+GAS LISTING /tmp/ccNEzosr.s 			page 9
 
 
  392              	#NO_APP
@@ -538,7 +538,7 @@ GAS LISTING /tmp/cc2AjMLb.s 			page 1
  439              	.LVL15:
  440              		.loc 1 89 5 is_stmt 1
   90:src/syscall_c.cpp **** }
-GAS LISTING /tmp/cc2AjMLb.s 			page 10
+GAS LISTING /tmp/ccNEzosr.s 			page 10
 
 
  441              		.loc 1 90 1 is_stmt 0
@@ -598,7 +598,7 @@ GAS LISTING /tmp/cc2AjMLb.s 			page 1
  488              	# 0 "" 2
  489              	.LVL17:
  490              		.loc 1 99 5 is_stmt 1
-GAS LISTING /tmp/cc2AjMLb.s 			page 11
+GAS LISTING /tmp/ccNEzosr.s 			page 11
 
 
  100:src/syscall_c.cpp **** }
@@ -658,7 +658,7 @@ GAS LISTING /tmp/cc2AjMLb.s 			page 1
  537              		mv a0, a0
  538              	# 0 "" 2
  539              	.LVL19:
-GAS LISTING /tmp/cc2AjMLb.s 			page 12
+GAS LISTING /tmp/ccNEzosr.s 			page 12
 
 
  540              		.loc 1 109 5 is_stmt 1
@@ -718,7 +718,7 @@ GAS LISTING /tmp/cc2AjMLb.s 			page 1
  586              	#NO_APP
  587 01fc 1375F50F 		andi	a0,a0,0xff
  588 0200 03348100 		ld	s0,8(sp)
-GAS LISTING /tmp/cc2AjMLb.s 			page 13
+GAS LISTING /tmp/ccNEzosr.s 			page 13
 
 
  589              		.cfi_restore 8
@@ -776,413 +776,413 @@ GAS LISTING /tmp/cc2AjMLb.s 			page 1
  638              	.Letext0:
  639              		.file 2 "src/../h/../lib/hw.h"
  640              		.file 3 "src/../h/syscall_c.hpp"
-GAS LISTING /tmp/cc2AjMLb.s 			page 14
+GAS LISTING /tmp/ccNEzosr.s 			page 14
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 syscall_c.cpp
-     /tmp/cc2AjMLb.s:9      .text:0000000000000000 _Z9mem_allocm
-     /tmp/cc2AjMLb.s:13     .text:0000000000000000 .L0 
-     /tmp/cc2AjMLb.s:15     .text:0000000000000000 .L0 
-     /tmp/cc2AjMLb.s:16     .text:0000000000000004 .L0 
-     /tmp/cc2AjMLb.s:18     .text:0000000000000008 .L0 
-     /tmp/cc2AjMLb.s:20     .text:000000000000000c .L0 
-     /tmp/cc2AjMLb.s:22     .text:000000000000000c .L0 
-     /tmp/cc2AjMLb.s:23     .text:000000000000000c .L0 
-     /tmp/cc2AjMLb.s:26     .text:0000000000000010 .L0 
-     /tmp/cc2AjMLb.s:27     .text:0000000000000010 .L0 
-     /tmp/cc2AjMLb.s:29     .text:0000000000000014 .L0 
-     /tmp/cc2AjMLb.s:32     .text:0000000000000018 .L0 
-     /tmp/cc2AjMLb.s:36     .text:0000000000000020 .L0 
-     /tmp/cc2AjMLb.s:39     .text:0000000000000024 .L0 
+     /tmp/ccNEzosr.s:9      .text:0000000000000000 _Z9mem_allocm
+     /tmp/ccNEzosr.s:13     .text:0000000000000000 .L0 
+     /tmp/ccNEzosr.s:15     .text:0000000000000000 .L0 
+     /tmp/ccNEzosr.s:16     .text:0000000000000004 .L0 
+     /tmp/ccNEzosr.s:18     .text:0000000000000008 .L0 
+     /tmp/ccNEzosr.s:20     .text:000000000000000c .L0 
+     /tmp/ccNEzosr.s:22     .text:000000000000000c .L0 
+     /tmp/ccNEzosr.s:23     .text:000000000000000c .L0 
+     /tmp/ccNEzosr.s:26     .text:0000000000000010 .L0 
+     /tmp/ccNEzosr.s:27     .text:0000000000000010 .L0 
+     /tmp/ccNEzosr.s:29     .text:0000000000000014 .L0 
+     /tmp/ccNEzosr.s:32     .text:0000000000000018 .L0 
+     /tmp/ccNEzosr.s:36     .text:0000000000000020 .L0 
+     /tmp/ccNEzosr.s:39     .text:0000000000000024 .L0 
    src/syscall_c.cpp:8      .text:0000000000000024 .L0 
-     /tmp/cc2AjMLb.s:45     .text:0000000000000028 .L0 
+     /tmp/ccNEzosr.s:45     .text:0000000000000028 .L0 
    src/syscall_c.cpp:9      .text:0000000000000028 .L0 
-     /tmp/cc2AjMLb.s:50     .text:000000000000002c .L0 
+     /tmp/ccNEzosr.s:50     .text:000000000000002c .L0 
    src/syscall_c.cpp:10     .text:000000000000002c .L0 
-     /tmp/cc2AjMLb.s:55     .text:0000000000000030 .L0 
-     /tmp/cc2AjMLb.s:56     .text:0000000000000030 .L0 
+     /tmp/ccNEzosr.s:55     .text:0000000000000030 .L0 
+     /tmp/ccNEzosr.s:56     .text:0000000000000030 .L0 
    src/syscall_c.cpp:13     .text:0000000000000030 .L0 
-     /tmp/cc2AjMLb.s:62     .text:0000000000000034 .L0 
-     /tmp/cc2AjMLb.s:64     .text:0000000000000034 .L0 
-     /tmp/cc2AjMLb.s:65     .text:0000000000000038 .L0 
-     /tmp/cc2AjMLb.s:66     .text:0000000000000038 .L0 
-     /tmp/cc2AjMLb.s:68     .text:000000000000003c .L0 
-     /tmp/cc2AjMLb.s:70     .text:0000000000000040 .L0 
-     /tmp/cc2AjMLb.s:76     .text:0000000000000040 _Z18mem_get_free_spacev
-     /tmp/cc2AjMLb.s:79     .text:0000000000000040 .L0 
-     /tmp/cc2AjMLb.s:80     .text:0000000000000040 .L0 
-     /tmp/cc2AjMLb.s:81     .text:0000000000000044 .L0 
-     /tmp/cc2AjMLb.s:83     .text:0000000000000048 .L0 
-     /tmp/cc2AjMLb.s:85     .text:000000000000004c .L0 
-     /tmp/cc2AjMLb.s:87     .text:000000000000004c .L0 
+     /tmp/ccNEzosr.s:62     .text:0000000000000034 .L0 
+     /tmp/ccNEzosr.s:64     .text:0000000000000034 .L0 
+     /tmp/ccNEzosr.s:65     .text:0000000000000038 .L0 
+     /tmp/ccNEzosr.s:66     .text:0000000000000038 .L0 
+     /tmp/ccNEzosr.s:68     .text:000000000000003c .L0 
+     /tmp/ccNEzosr.s:70     .text:0000000000000040 .L0 
+     /tmp/ccNEzosr.s:76     .text:0000000000000040 _Z18mem_get_free_spacev
+     /tmp/ccNEzosr.s:79     .text:0000000000000040 .L0 
+     /tmp/ccNEzosr.s:80     .text:0000000000000040 .L0 
+     /tmp/ccNEzosr.s:81     .text:0000000000000044 .L0 
+     /tmp/ccNEzosr.s:83     .text:0000000000000048 .L0 
+     /tmp/ccNEzosr.s:85     .text:000000000000004c .L0 
+     /tmp/ccNEzosr.s:87     .text:000000000000004c .L0 
    src/syscall_c.cpp:18     .text:000000000000004c .L0 
-     /tmp/cc2AjMLb.s:93     .text:0000000000000050 .L0 
+     /tmp/ccNEzosr.s:93     .text:0000000000000050 .L0 
    src/syscall_c.cpp:19     .text:0000000000000050 .L0 
-     /tmp/cc2AjMLb.s:98     .text:0000000000000054 .L0 
-     /tmp/cc2AjMLb.s:99     .text:0000000000000054 .L0 
+     /tmp/ccNEzosr.s:98     .text:0000000000000054 .L0 
+     /tmp/ccNEzosr.s:99     .text:0000000000000054 .L0 
    src/syscall_c.cpp:22     .text:0000000000000054 .L0 
-     /tmp/cc2AjMLb.s:105    .text:0000000000000058 .L0 
-     /tmp/cc2AjMLb.s:107    .text:0000000000000058 .L0 
-     /tmp/cc2AjMLb.s:108    .text:000000000000005c .L0 
-     /tmp/cc2AjMLb.s:109    .text:000000000000005c .L0 
-     /tmp/cc2AjMLb.s:111    .text:0000000000000060 .L0 
-     /tmp/cc2AjMLb.s:113    .text:0000000000000064 .L0 
-     /tmp/cc2AjMLb.s:119    .text:0000000000000064 _Z26mem_get_largest_free_blockv
-     /tmp/cc2AjMLb.s:122    .text:0000000000000064 .L0 
-     /tmp/cc2AjMLb.s:123    .text:0000000000000064 .L0 
-     /tmp/cc2AjMLb.s:124    .text:0000000000000068 .L0 
-     /tmp/cc2AjMLb.s:126    .text:000000000000006c .L0 
-     /tmp/cc2AjMLb.s:128    .text:0000000000000070 .L0 
-     /tmp/cc2AjMLb.s:130    .text:0000000000000070 .L0 
+     /tmp/ccNEzosr.s:105    .text:0000000000000058 .L0 
+     /tmp/ccNEzosr.s:107    .text:0000000000000058 .L0 
+     /tmp/ccNEzosr.s:108    .text:000000000000005c .L0 
+     /tmp/ccNEzosr.s:109    .text:000000000000005c .L0 
+     /tmp/ccNEzosr.s:111    .text:0000000000000060 .L0 
+     /tmp/ccNEzosr.s:113    .text:0000000000000064 .L0 
+     /tmp/ccNEzosr.s:119    .text:0000000000000064 _Z26mem_get_largest_free_blockv
+     /tmp/ccNEzosr.s:122    .text:0000000000000064 .L0 
+     /tmp/ccNEzosr.s:123    .text:0000000000000064 .L0 
+     /tmp/ccNEzosr.s:124    .text:0000000000000068 .L0 
+     /tmp/ccNEzosr.s:126    .text:000000000000006c .L0 
+     /tmp/ccNEzosr.s:128    .text:0000000000000070 .L0 
+     /tmp/ccNEzosr.s:130    .text:0000000000000070 .L0 
    src/syscall_c.cpp:27     .text:0000000000000070 .L0 
-GAS LISTING /tmp/cc2AjMLb.s 			page 15
+GAS LISTING /tmp/ccNEzosr.s 			page 15
 
 
-     /tmp/cc2AjMLb.s:136    .text:0000000000000074 .L0 
+     /tmp/ccNEzosr.s:136    .text:0000000000000074 .L0 
    src/syscall_c.cpp:28     .text:0000000000000074 .L0 
-     /tmp/cc2AjMLb.s:141    .text:0000000000000078 .L0 
-     /tmp/cc2AjMLb.s:142    .text:0000000000000078 .L0 
+     /tmp/ccNEzosr.s:141    .text:0000000000000078 .L0 
+     /tmp/ccNEzosr.s:142    .text:0000000000000078 .L0 
    src/syscall_c.cpp:31     .text:0000000000000078 .L0 
-     /tmp/cc2AjMLb.s:148    .text:000000000000007c .L0 
-     /tmp/cc2AjMLb.s:150    .text:000000000000007c .L0 
-     /tmp/cc2AjMLb.s:151    .text:0000000000000080 .L0 
-     /tmp/cc2AjMLb.s:152    .text:0000000000000080 .L0 
-     /tmp/cc2AjMLb.s:154    .text:0000000000000084 .L0 
-     /tmp/cc2AjMLb.s:156    .text:0000000000000088 .L0 
-     /tmp/cc2AjMLb.s:162    .text:0000000000000088 _Z13thread_createPP7_threadPFvPvES2_
-     /tmp/cc2AjMLb.s:165    .text:0000000000000088 .L0 
-     /tmp/cc2AjMLb.s:167    .text:0000000000000088 .L0 
-     /tmp/cc2AjMLb.s:168    .text:000000000000008c .L0 
-     /tmp/cc2AjMLb.s:170    .text:0000000000000090 .L0 
-     /tmp/cc2AjMLb.s:172    .text:0000000000000094 .L0 
-     /tmp/cc2AjMLb.s:174    .text:0000000000000094 .L0 
+     /tmp/ccNEzosr.s:148    .text:000000000000007c .L0 
+     /tmp/ccNEzosr.s:150    .text:000000000000007c .L0 
+     /tmp/ccNEzosr.s:151    .text:0000000000000080 .L0 
+     /tmp/ccNEzosr.s:152    .text:0000000000000080 .L0 
+     /tmp/ccNEzosr.s:154    .text:0000000000000084 .L0 
+     /tmp/ccNEzosr.s:156    .text:0000000000000088 .L0 
+     /tmp/ccNEzosr.s:162    .text:0000000000000088 _Z13thread_createPP7_threadPFvPvES2_
+     /tmp/ccNEzosr.s:165    .text:0000000000000088 .L0 
+     /tmp/ccNEzosr.s:167    .text:0000000000000088 .L0 
+     /tmp/ccNEzosr.s:168    .text:000000000000008c .L0 
+     /tmp/ccNEzosr.s:170    .text:0000000000000090 .L0 
+     /tmp/ccNEzosr.s:172    .text:0000000000000094 .L0 
+     /tmp/ccNEzosr.s:174    .text:0000000000000094 .L0 
    src/syscall_c.cpp:36     .text:0000000000000094 .L0 
-     /tmp/cc2AjMLb.s:180    .text:0000000000000098 .L0 
+     /tmp/ccNEzosr.s:180    .text:0000000000000098 .L0 
    src/syscall_c.cpp:37     .text:0000000000000098 .L0 
-     /tmp/cc2AjMLb.s:185    .text:000000000000009c .L0 
+     /tmp/ccNEzosr.s:185    .text:000000000000009c .L0 
    src/syscall_c.cpp:38     .text:000000000000009c .L0 
-     /tmp/cc2AjMLb.s:190    .text:00000000000000a0 .L0 
+     /tmp/ccNEzosr.s:190    .text:00000000000000a0 .L0 
    src/syscall_c.cpp:39     .text:00000000000000a0 .L0 
-     /tmp/cc2AjMLb.s:195    .text:00000000000000a4 .L0 
+     /tmp/ccNEzosr.s:195    .text:00000000000000a4 .L0 
    src/syscall_c.cpp:40     .text:00000000000000a4 .L0 
-     /tmp/cc2AjMLb.s:200    .text:00000000000000a8 .L0 
-     /tmp/cc2AjMLb.s:201    .text:00000000000000a8 .L0 
+     /tmp/ccNEzosr.s:200    .text:00000000000000a8 .L0 
+     /tmp/ccNEzosr.s:201    .text:00000000000000a8 .L0 
    src/syscall_c.cpp:43     .text:00000000000000a8 .L0 
-     /tmp/cc2AjMLb.s:207    .text:00000000000000ac .L0 
-     /tmp/cc2AjMLb.s:209    .text:00000000000000ac .L0 
-     /tmp/cc2AjMLb.s:211    .text:00000000000000b4 .L0 
-     /tmp/cc2AjMLb.s:212    .text:00000000000000b4 .L0 
-     /tmp/cc2AjMLb.s:214    .text:00000000000000b8 .L0 
-     /tmp/cc2AjMLb.s:216    .text:00000000000000bc .L0 
-     /tmp/cc2AjMLb.s:222    .text:00000000000000bc _Z11thread_exitv
-     /tmp/cc2AjMLb.s:225    .text:00000000000000bc .L0 
-     /tmp/cc2AjMLb.s:226    .text:00000000000000bc .L0 
-     /tmp/cc2AjMLb.s:227    .text:00000000000000c0 .L0 
-     /tmp/cc2AjMLb.s:229    .text:00000000000000c4 .L0 
-     /tmp/cc2AjMLb.s:231    .text:00000000000000c8 .L0 
-     /tmp/cc2AjMLb.s:233    .text:00000000000000c8 .L0 
+     /tmp/ccNEzosr.s:207    .text:00000000000000ac .L0 
+     /tmp/ccNEzosr.s:209    .text:00000000000000ac .L0 
+     /tmp/ccNEzosr.s:211    .text:00000000000000b4 .L0 
+     /tmp/ccNEzosr.s:212    .text:00000000000000b4 .L0 
+     /tmp/ccNEzosr.s:214    .text:00000000000000b8 .L0 
+     /tmp/ccNEzosr.s:216    .text:00000000000000bc .L0 
+     /tmp/ccNEzosr.s:222    .text:00000000000000bc _Z11thread_exitv
+     /tmp/ccNEzosr.s:225    .text:00000000000000bc .L0 
+     /tmp/ccNEzosr.s:226    .text:00000000000000bc .L0 
+     /tmp/ccNEzosr.s:227    .text:00000000000000c0 .L0 
+     /tmp/ccNEzosr.s:229    .text:00000000000000c4 .L0 
+     /tmp/ccNEzosr.s:231    .text:00000000000000c8 .L0 
+     /tmp/ccNEzosr.s:233    .text:00000000000000c8 .L0 
    src/syscall_c.cpp:48     .text:00000000000000c8 .L0 
-     /tmp/cc2AjMLb.s:239    .text:00000000000000cc .L0 
+     /tmp/ccNEzosr.s:239    .text:00000000000000cc .L0 
    src/syscall_c.cpp:49     .text:00000000000000cc .L0 
-     /tmp/cc2AjMLb.s:244    .text:00000000000000d0 .L0 
-     /tmp/cc2AjMLb.s:245    .text:00000000000000d0 .L0 
+     /tmp/ccNEzosr.s:244    .text:00000000000000d0 .L0 
+     /tmp/ccNEzosr.s:245    .text:00000000000000d0 .L0 
    src/syscall_c.cpp:52     .text:00000000000000d0 .L0 
-     /tmp/cc2AjMLb.s:251    .text:00000000000000d4 .L0 
-     /tmp/cc2AjMLb.s:253    .text:00000000000000d4 .L0 
-     /tmp/cc2AjMLb.s:255    .text:00000000000000dc .L0 
-     /tmp/cc2AjMLb.s:256    .text:00000000000000dc .L0 
-     /tmp/cc2AjMLb.s:258    .text:00000000000000e0 .L0 
-     /tmp/cc2AjMLb.s:260    .text:00000000000000e4 .L0 
-     /tmp/cc2AjMLb.s:266    .text:00000000000000e4 _Z15thread_dispatchv
-     /tmp/cc2AjMLb.s:269    .text:00000000000000e4 .L0 
-GAS LISTING /tmp/cc2AjMLb.s 			page 16
+     /tmp/ccNEzosr.s:251    .text:00000000000000d4 .L0 
+     /tmp/ccNEzosr.s:253    .text:00000000000000d4 .L0 
+     /tmp/ccNEzosr.s:255    .text:00000000000000dc .L0 
+     /tmp/ccNEzosr.s:256    .text:00000000000000dc .L0 
+     /tmp/ccNEzosr.s:258    .text:00000000000000e0 .L0 
+     /tmp/ccNEzosr.s:260    .text:00000000000000e4 .L0 
+     /tmp/ccNEzosr.s:266    .text:00000000000000e4 _Z15thread_dispatchv
+     /tmp/ccNEzosr.s:269    .text:00000000000000e4 .L0 
+GAS LISTING /tmp/ccNEzosr.s 			page 16
 
 
-     /tmp/cc2AjMLb.s:270    .text:00000000000000e4 .L0 
-     /tmp/cc2AjMLb.s:271    .text:00000000000000e8 .L0 
-     /tmp/cc2AjMLb.s:273    .text:00000000000000ec .L0 
-     /tmp/cc2AjMLb.s:275    .text:00000000000000f0 .L0 
-     /tmp/cc2AjMLb.s:277    .text:00000000000000f0 .L0 
+     /tmp/ccNEzosr.s:270    .text:00000000000000e4 .L0 
+     /tmp/ccNEzosr.s:271    .text:00000000000000e8 .L0 
+     /tmp/ccNEzosr.s:273    .text:00000000000000ec .L0 
+     /tmp/ccNEzosr.s:275    .text:00000000000000f0 .L0 
+     /tmp/ccNEzosr.s:277    .text:00000000000000f0 .L0 
    src/syscall_c.cpp:57     .text:00000000000000f0 .L0 
-     /tmp/cc2AjMLb.s:283    .text:00000000000000f4 .L0 
+     /tmp/ccNEzosr.s:283    .text:00000000000000f4 .L0 
    src/syscall_c.cpp:58     .text:00000000000000f4 .L0 
-     /tmp/cc2AjMLb.s:289    .text:00000000000000f8 .L0 
-     /tmp/cc2AjMLb.s:290    .text:00000000000000fc .L0 
-     /tmp/cc2AjMLb.s:291    .text:00000000000000fc .L0 
-     /tmp/cc2AjMLb.s:293    .text:0000000000000100 .L0 
-     /tmp/cc2AjMLb.s:295    .text:0000000000000104 .L0 
-     /tmp/cc2AjMLb.s:301    .text:0000000000000104 _Z8sem_openPP4_semj
-     /tmp/cc2AjMLb.s:304    .text:0000000000000104 .L0 
-     /tmp/cc2AjMLb.s:306    .text:0000000000000104 .L0 
-     /tmp/cc2AjMLb.s:307    .text:0000000000000108 .L0 
-     /tmp/cc2AjMLb.s:309    .text:000000000000010c .L0 
-     /tmp/cc2AjMLb.s:311    .text:0000000000000110 .L0 
-     /tmp/cc2AjMLb.s:313    .text:0000000000000110 .L0 
+     /tmp/ccNEzosr.s:289    .text:00000000000000f8 .L0 
+     /tmp/ccNEzosr.s:290    .text:00000000000000fc .L0 
+     /tmp/ccNEzosr.s:291    .text:00000000000000fc .L0 
+     /tmp/ccNEzosr.s:293    .text:0000000000000100 .L0 
+     /tmp/ccNEzosr.s:295    .text:0000000000000104 .L0 
+     /tmp/ccNEzosr.s:301    .text:0000000000000104 _Z8sem_openPP4_semj
+     /tmp/ccNEzosr.s:304    .text:0000000000000104 .L0 
+     /tmp/ccNEzosr.s:306    .text:0000000000000104 .L0 
+     /tmp/ccNEzosr.s:307    .text:0000000000000108 .L0 
+     /tmp/ccNEzosr.s:309    .text:000000000000010c .L0 
+     /tmp/ccNEzosr.s:311    .text:0000000000000110 .L0 
+     /tmp/ccNEzosr.s:313    .text:0000000000000110 .L0 
    src/syscall_c.cpp:62     .text:0000000000000110 .L0 
-     /tmp/cc2AjMLb.s:319    .text:0000000000000114 .L0 
+     /tmp/ccNEzosr.s:319    .text:0000000000000114 .L0 
    src/syscall_c.cpp:63     .text:0000000000000114 .L0 
-     /tmp/cc2AjMLb.s:324    .text:0000000000000118 .L0 
+     /tmp/ccNEzosr.s:324    .text:0000000000000118 .L0 
    src/syscall_c.cpp:64     .text:0000000000000118 .L0 
-     /tmp/cc2AjMLb.s:329    .text:000000000000011c .L0 
+     /tmp/ccNEzosr.s:329    .text:000000000000011c .L0 
    src/syscall_c.cpp:65     .text:000000000000011c .L0 
-     /tmp/cc2AjMLb.s:334    .text:0000000000000120 .L0 
-     /tmp/cc2AjMLb.s:335    .text:0000000000000120 .L0 
+     /tmp/ccNEzosr.s:334    .text:0000000000000120 .L0 
+     /tmp/ccNEzosr.s:335    .text:0000000000000120 .L0 
    src/syscall_c.cpp:68     .text:0000000000000120 .L0 
-     /tmp/cc2AjMLb.s:341    .text:0000000000000124 .L0 
-     /tmp/cc2AjMLb.s:343    .text:0000000000000124 .L0 
-     /tmp/cc2AjMLb.s:345    .text:000000000000012c .L0 
-     /tmp/cc2AjMLb.s:346    .text:000000000000012c .L0 
-     /tmp/cc2AjMLb.s:348    .text:0000000000000130 .L0 
-     /tmp/cc2AjMLb.s:350    .text:0000000000000134 .L0 
-     /tmp/cc2AjMLb.s:356    .text:0000000000000134 _Z9sem_closeP4_sem
-     /tmp/cc2AjMLb.s:359    .text:0000000000000134 .L0 
-     /tmp/cc2AjMLb.s:361    .text:0000000000000134 .L0 
-     /tmp/cc2AjMLb.s:362    .text:0000000000000138 .L0 
-     /tmp/cc2AjMLb.s:364    .text:000000000000013c .L0 
-     /tmp/cc2AjMLb.s:366    .text:0000000000000140 .L0 
-     /tmp/cc2AjMLb.s:368    .text:0000000000000140 .L0 
+     /tmp/ccNEzosr.s:341    .text:0000000000000124 .L0 
+     /tmp/ccNEzosr.s:343    .text:0000000000000124 .L0 
+     /tmp/ccNEzosr.s:345    .text:000000000000012c .L0 
+     /tmp/ccNEzosr.s:346    .text:000000000000012c .L0 
+     /tmp/ccNEzosr.s:348    .text:0000000000000130 .L0 
+     /tmp/ccNEzosr.s:350    .text:0000000000000134 .L0 
+     /tmp/ccNEzosr.s:356    .text:0000000000000134 _Z9sem_closeP4_sem
+     /tmp/ccNEzosr.s:359    .text:0000000000000134 .L0 
+     /tmp/ccNEzosr.s:361    .text:0000000000000134 .L0 
+     /tmp/ccNEzosr.s:362    .text:0000000000000138 .L0 
+     /tmp/ccNEzosr.s:364    .text:000000000000013c .L0 
+     /tmp/ccNEzosr.s:366    .text:0000000000000140 .L0 
+     /tmp/ccNEzosr.s:368    .text:0000000000000140 .L0 
    src/syscall_c.cpp:73     .text:0000000000000140 .L0 
-     /tmp/cc2AjMLb.s:374    .text:0000000000000144 .L0 
+     /tmp/ccNEzosr.s:374    .text:0000000000000144 .L0 
    src/syscall_c.cpp:74     .text:0000000000000144 .L0 
-     /tmp/cc2AjMLb.s:379    .text:0000000000000148 .L0 
+     /tmp/ccNEzosr.s:379    .text:0000000000000148 .L0 
    src/syscall_c.cpp:75     .text:0000000000000148 .L0 
-     /tmp/cc2AjMLb.s:384    .text:000000000000014c .L0 
-     /tmp/cc2AjMLb.s:385    .text:000000000000014c .L0 
+     /tmp/ccNEzosr.s:384    .text:000000000000014c .L0 
+     /tmp/ccNEzosr.s:385    .text:000000000000014c .L0 
    src/syscall_c.cpp:78     .text:000000000000014c .L0 
-     /tmp/cc2AjMLb.s:391    .text:0000000000000150 .L0 
-     /tmp/cc2AjMLb.s:393    .text:0000000000000150 .L0 
-     /tmp/cc2AjMLb.s:395    .text:0000000000000158 .L0 
-     /tmp/cc2AjMLb.s:396    .text:0000000000000158 .L0 
-     /tmp/cc2AjMLb.s:398    .text:000000000000015c .L0 
-     /tmp/cc2AjMLb.s:400    .text:0000000000000160 .L0 
-GAS LISTING /tmp/cc2AjMLb.s 			page 17
+     /tmp/ccNEzosr.s:391    .text:0000000000000150 .L0 
+     /tmp/ccNEzosr.s:393    .text:0000000000000150 .L0 
+     /tmp/ccNEzosr.s:395    .text:0000000000000158 .L0 
+     /tmp/ccNEzosr.s:396    .text:0000000000000158 .L0 
+     /tmp/ccNEzosr.s:398    .text:000000000000015c .L0 
+     /tmp/ccNEzosr.s:400    .text:0000000000000160 .L0 
+GAS LISTING /tmp/ccNEzosr.s 			page 17
 
 
-     /tmp/cc2AjMLb.s:406    .text:0000000000000160 _Z8sem_waitP4_sem
-     /tmp/cc2AjMLb.s:409    .text:0000000000000160 .L0 
-     /tmp/cc2AjMLb.s:411    .text:0000000000000160 .L0 
-     /tmp/cc2AjMLb.s:412    .text:0000000000000164 .L0 
-     /tmp/cc2AjMLb.s:414    .text:0000000000000168 .L0 
-     /tmp/cc2AjMLb.s:416    .text:000000000000016c .L0 
-     /tmp/cc2AjMLb.s:418    .text:000000000000016c .L0 
+     /tmp/ccNEzosr.s:406    .text:0000000000000160 _Z8sem_waitP4_sem
+     /tmp/ccNEzosr.s:409    .text:0000000000000160 .L0 
+     /tmp/ccNEzosr.s:411    .text:0000000000000160 .L0 
+     /tmp/ccNEzosr.s:412    .text:0000000000000164 .L0 
+     /tmp/ccNEzosr.s:414    .text:0000000000000168 .L0 
+     /tmp/ccNEzosr.s:416    .text:000000000000016c .L0 
+     /tmp/ccNEzosr.s:418    .text:000000000000016c .L0 
    src/syscall_c.cpp:83     .text:000000000000016c .L0 
-     /tmp/cc2AjMLb.s:424    .text:0000000000000170 .L0 
+     /tmp/ccNEzosr.s:424    .text:0000000000000170 .L0 
    src/syscall_c.cpp:84     .text:0000000000000170 .L0 
-     /tmp/cc2AjMLb.s:429    .text:0000000000000174 .L0 
+     /tmp/ccNEzosr.s:429    .text:0000000000000174 .L0 
    src/syscall_c.cpp:85     .text:0000000000000174 .L0 
-     /tmp/cc2AjMLb.s:434    .text:0000000000000178 .L0 
-     /tmp/cc2AjMLb.s:435    .text:0000000000000178 .L0 
+     /tmp/ccNEzosr.s:434    .text:0000000000000178 .L0 
+     /tmp/ccNEzosr.s:435    .text:0000000000000178 .L0 
    src/syscall_c.cpp:88     .text:0000000000000178 .L0 
-     /tmp/cc2AjMLb.s:441    .text:000000000000017c .L0 
-     /tmp/cc2AjMLb.s:443    .text:000000000000017c .L0 
-     /tmp/cc2AjMLb.s:445    .text:0000000000000184 .L0 
-     /tmp/cc2AjMLb.s:446    .text:0000000000000184 .L0 
-     /tmp/cc2AjMLb.s:448    .text:0000000000000188 .L0 
-     /tmp/cc2AjMLb.s:450    .text:000000000000018c .L0 
-     /tmp/cc2AjMLb.s:456    .text:000000000000018c _Z10sem_signalP4_sem
-     /tmp/cc2AjMLb.s:459    .text:000000000000018c .L0 
-     /tmp/cc2AjMLb.s:461    .text:000000000000018c .L0 
-     /tmp/cc2AjMLb.s:462    .text:0000000000000190 .L0 
-     /tmp/cc2AjMLb.s:464    .text:0000000000000194 .L0 
-     /tmp/cc2AjMLb.s:466    .text:0000000000000198 .L0 
-     /tmp/cc2AjMLb.s:468    .text:0000000000000198 .L0 
+     /tmp/ccNEzosr.s:441    .text:000000000000017c .L0 
+     /tmp/ccNEzosr.s:443    .text:000000000000017c .L0 
+     /tmp/ccNEzosr.s:445    .text:0000000000000184 .L0 
+     /tmp/ccNEzosr.s:446    .text:0000000000000184 .L0 
+     /tmp/ccNEzosr.s:448    .text:0000000000000188 .L0 
+     /tmp/ccNEzosr.s:450    .text:000000000000018c .L0 
+     /tmp/ccNEzosr.s:456    .text:000000000000018c _Z10sem_signalP4_sem
+     /tmp/ccNEzosr.s:459    .text:000000000000018c .L0 
+     /tmp/ccNEzosr.s:461    .text:000000000000018c .L0 
+     /tmp/ccNEzosr.s:462    .text:0000000000000190 .L0 
+     /tmp/ccNEzosr.s:464    .text:0000000000000194 .L0 
+     /tmp/ccNEzosr.s:466    .text:0000000000000198 .L0 
+     /tmp/ccNEzosr.s:468    .text:0000000000000198 .L0 
    src/syscall_c.cpp:93     .text:0000000000000198 .L0 
-     /tmp/cc2AjMLb.s:474    .text:000000000000019c .L0 
+     /tmp/ccNEzosr.s:474    .text:000000000000019c .L0 
    src/syscall_c.cpp:94     .text:000000000000019c .L0 
-     /tmp/cc2AjMLb.s:479    .text:00000000000001a0 .L0 
+     /tmp/ccNEzosr.s:479    .text:00000000000001a0 .L0 
    src/syscall_c.cpp:95     .text:00000000000001a0 .L0 
-     /tmp/cc2AjMLb.s:484    .text:00000000000001a4 .L0 
-     /tmp/cc2AjMLb.s:485    .text:00000000000001a4 .L0 
+     /tmp/ccNEzosr.s:484    .text:00000000000001a4 .L0 
+     /tmp/ccNEzosr.s:485    .text:00000000000001a4 .L0 
    src/syscall_c.cpp:98     .text:00000000000001a4 .L0 
-     /tmp/cc2AjMLb.s:491    .text:00000000000001a8 .L0 
-     /tmp/cc2AjMLb.s:493    .text:00000000000001a8 .L0 
-     /tmp/cc2AjMLb.s:495    .text:00000000000001b0 .L0 
-     /tmp/cc2AjMLb.s:496    .text:00000000000001b0 .L0 
-     /tmp/cc2AjMLb.s:498    .text:00000000000001b4 .L0 
-     /tmp/cc2AjMLb.s:500    .text:00000000000001b8 .L0 
-     /tmp/cc2AjMLb.s:506    .text:00000000000001b8 _Z10time_sleepm
-     /tmp/cc2AjMLb.s:509    .text:00000000000001b8 .L0 
-     /tmp/cc2AjMLb.s:511    .text:00000000000001b8 .L0 
-     /tmp/cc2AjMLb.s:512    .text:00000000000001bc .L0 
-     /tmp/cc2AjMLb.s:514    .text:00000000000001c0 .L0 
-     /tmp/cc2AjMLb.s:516    .text:00000000000001c4 .L0 
-     /tmp/cc2AjMLb.s:518    .text:00000000000001c4 .L0 
+     /tmp/ccNEzosr.s:491    .text:00000000000001a8 .L0 
+     /tmp/ccNEzosr.s:493    .text:00000000000001a8 .L0 
+     /tmp/ccNEzosr.s:495    .text:00000000000001b0 .L0 
+     /tmp/ccNEzosr.s:496    .text:00000000000001b0 .L0 
+     /tmp/ccNEzosr.s:498    .text:00000000000001b4 .L0 
+     /tmp/ccNEzosr.s:500    .text:00000000000001b8 .L0 
+     /tmp/ccNEzosr.s:506    .text:00000000000001b8 _Z10time_sleepm
+     /tmp/ccNEzosr.s:509    .text:00000000000001b8 .L0 
+     /tmp/ccNEzosr.s:511    .text:00000000000001b8 .L0 
+     /tmp/ccNEzosr.s:512    .text:00000000000001bc .L0 
+     /tmp/ccNEzosr.s:514    .text:00000000000001c0 .L0 
+     /tmp/ccNEzosr.s:516    .text:00000000000001c4 .L0 
+     /tmp/ccNEzosr.s:518    .text:00000000000001c4 .L0 
    src/syscall_c.cpp:103    .text:00000000000001c4 .L0 
-     /tmp/cc2AjMLb.s:524    .text:00000000000001c8 .L0 
+     /tmp/ccNEzosr.s:524    .text:00000000000001c8 .L0 
    src/syscall_c.cpp:104    .text:00000000000001c8 .L0 
-     /tmp/cc2AjMLb.s:529    .text:00000000000001cc .L0 
+     /tmp/ccNEzosr.s:529    .text:00000000000001cc .L0 
    src/syscall_c.cpp:105    .text:00000000000001cc .L0 
-     /tmp/cc2AjMLb.s:534    .text:00000000000001d0 .L0 
-     /tmp/cc2AjMLb.s:535    .text:00000000000001d0 .L0 
+     /tmp/ccNEzosr.s:534    .text:00000000000001d0 .L0 
+     /tmp/ccNEzosr.s:535    .text:00000000000001d0 .L0 
    src/syscall_c.cpp:108    .text:00000000000001d0 .L0 
-GAS LISTING /tmp/cc2AjMLb.s 			page 18
+GAS LISTING /tmp/ccNEzosr.s 			page 18
 
 
-     /tmp/cc2AjMLb.s:541    .text:00000000000001d4 .L0 
-     /tmp/cc2AjMLb.s:543    .text:00000000000001d4 .L0 
-     /tmp/cc2AjMLb.s:545    .text:00000000000001dc .L0 
-     /tmp/cc2AjMLb.s:546    .text:00000000000001dc .L0 
-     /tmp/cc2AjMLb.s:548    .text:00000000000001e0 .L0 
-     /tmp/cc2AjMLb.s:550    .text:00000000000001e4 .L0 
-     /tmp/cc2AjMLb.s:556    .text:00000000000001e4 _Z4getcv
-     /tmp/cc2AjMLb.s:559    .text:00000000000001e4 .L0 
-     /tmp/cc2AjMLb.s:560    .text:00000000000001e4 .L0 
-     /tmp/cc2AjMLb.s:561    .text:00000000000001e8 .L0 
-     /tmp/cc2AjMLb.s:563    .text:00000000000001ec .L0 
-     /tmp/cc2AjMLb.s:565    .text:00000000000001f0 .L0 
-     /tmp/cc2AjMLb.s:567    .text:00000000000001f0 .L0 
+     /tmp/ccNEzosr.s:541    .text:00000000000001d4 .L0 
+     /tmp/ccNEzosr.s:543    .text:00000000000001d4 .L0 
+     /tmp/ccNEzosr.s:545    .text:00000000000001dc .L0 
+     /tmp/ccNEzosr.s:546    .text:00000000000001dc .L0 
+     /tmp/ccNEzosr.s:548    .text:00000000000001e0 .L0 
+     /tmp/ccNEzosr.s:550    .text:00000000000001e4 .L0 
+     /tmp/ccNEzosr.s:556    .text:00000000000001e4 _Z4getcv
+     /tmp/ccNEzosr.s:559    .text:00000000000001e4 .L0 
+     /tmp/ccNEzosr.s:560    .text:00000000000001e4 .L0 
+     /tmp/ccNEzosr.s:561    .text:00000000000001e8 .L0 
+     /tmp/ccNEzosr.s:563    .text:00000000000001ec .L0 
+     /tmp/ccNEzosr.s:565    .text:00000000000001f0 .L0 
+     /tmp/ccNEzosr.s:567    .text:00000000000001f0 .L0 
    src/syscall_c.cpp:113    .text:00000000000001f0 .L0 
-     /tmp/cc2AjMLb.s:573    .text:00000000000001f4 .L0 
+     /tmp/ccNEzosr.s:573    .text:00000000000001f4 .L0 
    src/syscall_c.cpp:114    .text:00000000000001f4 .L0 
-     /tmp/cc2AjMLb.s:578    .text:00000000000001f8 .L0 
-     /tmp/cc2AjMLb.s:579    .text:00000000000001f8 .L0 
+     /tmp/ccNEzosr.s:578    .text:00000000000001f8 .L0 
+     /tmp/ccNEzosr.s:579    .text:00000000000001f8 .L0 
    src/syscall_c.cpp:117    .text:00000000000001f8 .L0 
-     /tmp/cc2AjMLb.s:585    .text:00000000000001fc .L0 
-     /tmp/cc2AjMLb.s:587    .text:00000000000001fc .L0 
-     /tmp/cc2AjMLb.s:589    .text:0000000000000204 .L0 
-     /tmp/cc2AjMLb.s:590    .text:0000000000000204 .L0 
-     /tmp/cc2AjMLb.s:592    .text:0000000000000208 .L0 
-     /tmp/cc2AjMLb.s:594    .text:000000000000020c .L0 
-     /tmp/cc2AjMLb.s:600    .text:000000000000020c _Z4putcc
-     /tmp/cc2AjMLb.s:603    .text:000000000000020c .L0 
-     /tmp/cc2AjMLb.s:605    .text:000000000000020c .L0 
-     /tmp/cc2AjMLb.s:606    .text:0000000000000210 .L0 
-     /tmp/cc2AjMLb.s:608    .text:0000000000000214 .L0 
-     /tmp/cc2AjMLb.s:610    .text:0000000000000218 .L0 
-     /tmp/cc2AjMLb.s:612    .text:0000000000000218 .L0 
+     /tmp/ccNEzosr.s:585    .text:00000000000001fc .L0 
+     /tmp/ccNEzosr.s:587    .text:00000000000001fc .L0 
+     /tmp/ccNEzosr.s:589    .text:0000000000000204 .L0 
+     /tmp/ccNEzosr.s:590    .text:0000000000000204 .L0 
+     /tmp/ccNEzosr.s:592    .text:0000000000000208 .L0 
+     /tmp/ccNEzosr.s:594    .text:000000000000020c .L0 
+     /tmp/ccNEzosr.s:600    .text:000000000000020c _Z4putcc
+     /tmp/ccNEzosr.s:603    .text:000000000000020c .L0 
+     /tmp/ccNEzosr.s:605    .text:000000000000020c .L0 
+     /tmp/ccNEzosr.s:606    .text:0000000000000210 .L0 
+     /tmp/ccNEzosr.s:608    .text:0000000000000214 .L0 
+     /tmp/ccNEzosr.s:610    .text:0000000000000218 .L0 
+     /tmp/ccNEzosr.s:612    .text:0000000000000218 .L0 
    src/syscall_c.cpp:122    .text:0000000000000218 .L0 
-     /tmp/cc2AjMLb.s:618    .text:000000000000021c .L0 
+     /tmp/ccNEzosr.s:618    .text:000000000000021c .L0 
    src/syscall_c.cpp:123    .text:000000000000021c .L0 
-     /tmp/cc2AjMLb.s:623    .text:0000000000000220 .L0 
+     /tmp/ccNEzosr.s:623    .text:0000000000000220 .L0 
    src/syscall_c.cpp:124    .text:0000000000000220 .L0 
-     /tmp/cc2AjMLb.s:629    .text:0000000000000224 .L0 
-     /tmp/cc2AjMLb.s:630    .text:0000000000000228 .L0 
-     /tmp/cc2AjMLb.s:631    .text:0000000000000228 .L0 
-     /tmp/cc2AjMLb.s:633    .text:000000000000022c .L0 
-     /tmp/cc2AjMLb.s:635    .text:0000000000000230 .L0 
-     /tmp/cc2AjMLb.s:641    .text:0000000000000230 .L0 
-     /tmp/cc2AjMLb.s:34     .text:0000000000000020 .L2
-     /tmp/cc2AjMLb.s:1166   .debug_abbrev:0000000000000000 .Ldebug_abbrev0
-     /tmp/cc2AjMLb.s:1739   .debug_str:00000000000001a8 .LASF54
-     /tmp/cc2AjMLb.s:1797   .debug_str:00000000000003df .LASF55
-     /tmp/cc2AjMLb.s:1743   .debug_str:0000000000000271 .LASF56
-     /tmp/cc2AjMLb.s:5      .text:0000000000000000 .Ltext0
-     /tmp/cc2AjMLb.s:638    .text:0000000000000230 .Letext0
-     /tmp/cc2AjMLb.s:1681   .debug_line:0000000000000000 .Ldebug_line0
-     /tmp/cc2AjMLb.s:1749   .debug_str:00000000000002ad .LASF0
-     /tmp/cc2AjMLb.s:1725   .debug_str:000000000000013b .LASF1
-     /tmp/cc2AjMLb.s:1715   .debug_str:0000000000000103 .LASF2
-     /tmp/cc2AjMLb.s:1697   .debug_str:0000000000000063 .LASF4
-     /tmp/cc2AjMLb.s:1723   .debug_str:0000000000000129 .LASF3
-     /tmp/cc2AjMLb.s:1687   .debug_str:000000000000001e .LASF5
-GAS LISTING /tmp/cc2AjMLb.s 			page 19
+     /tmp/ccNEzosr.s:629    .text:0000000000000224 .L0 
+     /tmp/ccNEzosr.s:630    .text:0000000000000228 .L0 
+     /tmp/ccNEzosr.s:631    .text:0000000000000228 .L0 
+     /tmp/ccNEzosr.s:633    .text:000000000000022c .L0 
+     /tmp/ccNEzosr.s:635    .text:0000000000000230 .L0 
+     /tmp/ccNEzosr.s:641    .text:0000000000000230 .L0 
+     /tmp/ccNEzosr.s:34     .text:0000000000000020 .L2
+     /tmp/ccNEzosr.s:1166   .debug_abbrev:0000000000000000 .Ldebug_abbrev0
+     /tmp/ccNEzosr.s:1739   .debug_str:00000000000001a8 .LASF54
+     /tmp/ccNEzosr.s:1797   .debug_str:00000000000003df .LASF55
+     /tmp/ccNEzosr.s:1743   .debug_str:0000000000000271 .LASF56
+     /tmp/ccNEzosr.s:5      .text:0000000000000000 .Ltext0
+     /tmp/ccNEzosr.s:638    .text:0000000000000230 .Letext0
+     /tmp/ccNEzosr.s:1681   .debug_line:0000000000000000 .Ldebug_line0
+     /tmp/ccNEzosr.s:1749   .debug_str:00000000000002ad .LASF0
+     /tmp/ccNEzosr.s:1725   .debug_str:000000000000013b .LASF1
+     /tmp/ccNEzosr.s:1715   .debug_str:0000000000000103 .LASF2
+     /tmp/ccNEzosr.s:1697   .debug_str:0000000000000063 .LASF4
+     /tmp/ccNEzosr.s:1723   .debug_str:0000000000000129 .LASF3
+     /tmp/ccNEzosr.s:1687   .debug_str:000000000000001e .LASF5
+GAS LISTING /tmp/ccNEzosr.s 			page 19
 
 
-     /tmp/cc2AjMLb.s:1757   .debug_str:00000000000002d1 .LASF6
-     /tmp/cc2AjMLb.s:1685   .debug_str:000000000000000b .LASF7
-     /tmp/cc2AjMLb.s:1709   .debug_str:00000000000000cd .LASF8
-     /tmp/cc2AjMLb.s:1759   .debug_str:00000000000002d8 .LASF9
-     /tmp/cc2AjMLb.s:1695   .debug_str:0000000000000055 .LASF10
-     /tmp/cc2AjMLb.s:1799   .debug_str:00000000000003f1 .LASF11
-     /tmp/cc2AjMLb.s:1711   .debug_str:00000000000000e0 .LASF12
-     /tmp/cc2AjMLb.s:1785   .debug_str:0000000000000396 .LASF13
-     /tmp/cc2AjMLb.s:1767   .debug_str:000000000000030c .LASF14
-     /tmp/cc2AjMLb.s:1729   .debug_str:0000000000000157 .LASF15
-     /tmp/cc2AjMLb.s:1703   .debug_str:0000000000000082 .LASF16
-     /tmp/cc2AjMLb.s:1763   .debug_str:00000000000002ed .LASF17
-     /tmp/cc2AjMLb.s:1765   .debug_str:0000000000000303 .LASF18
-     /tmp/cc2AjMLb.s:1775   .debug_str:0000000000000344 .LASF20
-     /tmp/cc2AjMLb.s:1693   .debug_str:000000000000004f .LASF19
-     /tmp/cc2AjMLb.s:1741   .debug_str:000000000000026c .LASF21
-     /tmp/cc2AjMLb.s:1771   .debug_str:000000000000032c .LASF48
-     /tmp/cc2AjMLb.s:1727   .debug_str:000000000000014e .LASF50
-     /tmp/cc2AjMLb.s:601    .text:000000000000020c .LFB16
-     /tmp/cc2AjMLb.s:636    .text:0000000000000230 .LFE16
-     /tmp/cc2AjMLb.s:1753   .debug_str:00000000000002c5 .LASF22
-     /tmp/cc2AjMLb.s:1717   .debug_str:0000000000000111 .LASF24
-     /tmp/cc2AjMLb.s:1791   .debug_str:00000000000003bc .LASF26
-     /tmp/cc2AjMLb.s:557    .text:00000000000001e4 .LFB15
-     /tmp/cc2AjMLb.s:595    .text:000000000000020c .LFE15
-     /tmp/cc2AjMLb.s:1755   .debug_str:00000000000002ca .LASF23
-     /tmp/cc2AjMLb.s:1751   .debug_str:00000000000002ba .LASF25
-     /tmp/cc2AjMLb.s:1777   .debug_str:000000000000034c .LASF27
-     /tmp/cc2AjMLb.s:507    .text:00000000000001b8 .LFB14
-     /tmp/cc2AjMLb.s:551    .text:00000000000001e4 .LFE14
-     /tmp/cc2AjMLb.s:1761   .debug_str:00000000000002e8 .LASF28
-     /tmp/cc2AjMLb.s:1557   .debug_loc:0000000000000000 .LLST7
-     /tmp/cc2AjMLb.s:1733   .debug_str:000000000000016a .LASF29
-     /tmp/cc2AjMLb.s:1795   .debug_str:00000000000003ca .LASF30
-     /tmp/cc2AjMLb.s:457    .text:000000000000018c .LFB13
-     /tmp/cc2AjMLb.s:501    .text:00000000000001b8 .LFE13
-     /tmp/cc2AjMLb.s:1571   .debug_loc:0000000000000039 .LLST6
-     /tmp/cc2AjMLb.s:1745   .debug_str:0000000000000296 .LASF31
-     /tmp/cc2AjMLb.s:1689   .debug_str:0000000000000025 .LASF32
-     /tmp/cc2AjMLb.s:407    .text:0000000000000160 .LFB12
-     /tmp/cc2AjMLb.s:451    .text:000000000000018c .LFE12
-     /tmp/cc2AjMLb.s:1585   .debug_loc:0000000000000072 .LLST5
-     /tmp/cc2AjMLb.s:1721   .debug_str:000000000000011f .LASF33
-     /tmp/cc2AjMLb.s:1699   .debug_str:000000000000006a .LASF34
-     /tmp/cc2AjMLb.s:357    .text:0000000000000134 .LFB11
-     /tmp/cc2AjMLb.s:401    .text:0000000000000160 .LFE11
-     /tmp/cc2AjMLb.s:1731   .debug_str:0000000000000163 .LASF35
-     /tmp/cc2AjMLb.s:1599   .debug_loc:00000000000000ab .LLST4
-     /tmp/cc2AjMLb.s:1719   .debug_str:0000000000000116 .LASF36
-     /tmp/cc2AjMLb.s:1713   .debug_str:00000000000000ef .LASF37
-     /tmp/cc2AjMLb.s:302    .text:0000000000000104 .LFB10
-     /tmp/cc2AjMLb.s:351    .text:0000000000000134 .LFE10
-     /tmp/cc2AjMLb.s:1613   .debug_loc:00000000000000e4 .LLST3
-     /tmp/cc2AjMLb.s:1701   .debug_str:000000000000007d .LASF38
-     /tmp/cc2AjMLb.s:1769   .debug_str:000000000000031c .LASF57
-     /tmp/cc2AjMLb.s:1705   .debug_str:0000000000000098 .LASF58
-     /tmp/cc2AjMLb.s:267    .text:00000000000000e4 .LFB9
-GAS LISTING /tmp/cc2AjMLb.s 			page 20
+     /tmp/ccNEzosr.s:1757   .debug_str:00000000000002d1 .LASF6
+     /tmp/ccNEzosr.s:1685   .debug_str:000000000000000b .LASF7
+     /tmp/ccNEzosr.s:1709   .debug_str:00000000000000cd .LASF8
+     /tmp/ccNEzosr.s:1759   .debug_str:00000000000002d8 .LASF9
+     /tmp/ccNEzosr.s:1695   .debug_str:0000000000000055 .LASF10
+     /tmp/ccNEzosr.s:1799   .debug_str:00000000000003f1 .LASF11
+     /tmp/ccNEzosr.s:1711   .debug_str:00000000000000e0 .LASF12
+     /tmp/ccNEzosr.s:1785   .debug_str:0000000000000396 .LASF13
+     /tmp/ccNEzosr.s:1767   .debug_str:000000000000030c .LASF14
+     /tmp/ccNEzosr.s:1729   .debug_str:0000000000000157 .LASF15
+     /tmp/ccNEzosr.s:1703   .debug_str:0000000000000082 .LASF16
+     /tmp/ccNEzosr.s:1763   .debug_str:00000000000002ed .LASF17
+     /tmp/ccNEzosr.s:1765   .debug_str:0000000000000303 .LASF18
+     /tmp/ccNEzosr.s:1775   .debug_str:0000000000000344 .LASF20
+     /tmp/ccNEzosr.s:1693   .debug_str:000000000000004f .LASF19
+     /tmp/ccNEzosr.s:1741   .debug_str:000000000000026c .LASF21
+     /tmp/ccNEzosr.s:1771   .debug_str:000000000000032c .LASF48
+     /tmp/ccNEzosr.s:1727   .debug_str:000000000000014e .LASF50
+     /tmp/ccNEzosr.s:601    .text:000000000000020c .LFB16
+     /tmp/ccNEzosr.s:636    .text:0000000000000230 .LFE16
+     /tmp/ccNEzosr.s:1753   .debug_str:00000000000002c5 .LASF22
+     /tmp/ccNEzosr.s:1717   .debug_str:0000000000000111 .LASF24
+     /tmp/ccNEzosr.s:1791   .debug_str:00000000000003bc .LASF26
+     /tmp/ccNEzosr.s:557    .text:00000000000001e4 .LFB15
+     /tmp/ccNEzosr.s:595    .text:000000000000020c .LFE15
+     /tmp/ccNEzosr.s:1755   .debug_str:00000000000002ca .LASF23
+     /tmp/ccNEzosr.s:1751   .debug_str:00000000000002ba .LASF25
+     /tmp/ccNEzosr.s:1777   .debug_str:000000000000034c .LASF27
+     /tmp/ccNEzosr.s:507    .text:00000000000001b8 .LFB14
+     /tmp/ccNEzosr.s:551    .text:00000000000001e4 .LFE14
+     /tmp/ccNEzosr.s:1761   .debug_str:00000000000002e8 .LASF28
+     /tmp/ccNEzosr.s:1557   .debug_loc:0000000000000000 .LLST7
+     /tmp/ccNEzosr.s:1733   .debug_str:000000000000016a .LASF29
+     /tmp/ccNEzosr.s:1795   .debug_str:00000000000003ca .LASF30
+     /tmp/ccNEzosr.s:457    .text:000000000000018c .LFB13
+     /tmp/ccNEzosr.s:501    .text:00000000000001b8 .LFE13
+     /tmp/ccNEzosr.s:1571   .debug_loc:0000000000000039 .LLST6
+     /tmp/ccNEzosr.s:1745   .debug_str:0000000000000296 .LASF31
+     /tmp/ccNEzosr.s:1689   .debug_str:0000000000000025 .LASF32
+     /tmp/ccNEzosr.s:407    .text:0000000000000160 .LFB12
+     /tmp/ccNEzosr.s:451    .text:000000000000018c .LFE12
+     /tmp/ccNEzosr.s:1585   .debug_loc:0000000000000072 .LLST5
+     /tmp/ccNEzosr.s:1721   .debug_str:000000000000011f .LASF33
+     /tmp/ccNEzosr.s:1699   .debug_str:000000000000006a .LASF34
+     /tmp/ccNEzosr.s:357    .text:0000000000000134 .LFB11
+     /tmp/ccNEzosr.s:401    .text:0000000000000160 .LFE11
+     /tmp/ccNEzosr.s:1731   .debug_str:0000000000000163 .LASF35
+     /tmp/ccNEzosr.s:1599   .debug_loc:00000000000000ab .LLST4
+     /tmp/ccNEzosr.s:1719   .debug_str:0000000000000116 .LASF36
+     /tmp/ccNEzosr.s:1713   .debug_str:00000000000000ef .LASF37
+     /tmp/ccNEzosr.s:302    .text:0000000000000104 .LFB10
+     /tmp/ccNEzosr.s:351    .text:0000000000000134 .LFE10
+     /tmp/ccNEzosr.s:1613   .debug_loc:00000000000000e4 .LLST3
+     /tmp/ccNEzosr.s:1701   .debug_str:000000000000007d .LASF38
+     /tmp/ccNEzosr.s:1769   .debug_str:000000000000031c .LASF57
+     /tmp/ccNEzosr.s:1705   .debug_str:0000000000000098 .LASF58
+     /tmp/ccNEzosr.s:267    .text:00000000000000e4 .LFB9
+GAS LISTING /tmp/ccNEzosr.s 			page 20
 
 
-     /tmp/cc2AjMLb.s:296    .text:0000000000000104 .LFE9
-     /tmp/cc2AjMLb.s:1787   .debug_str:00000000000003a6 .LASF39
-     /tmp/cc2AjMLb.s:1781   .debug_str:000000000000036a .LASF40
-     /tmp/cc2AjMLb.s:223    .text:00000000000000bc .LFB8
-     /tmp/cc2AjMLb.s:261    .text:00000000000000e4 .LFE8
-     /tmp/cc2AjMLb.s:1779   .debug_str:000000000000035c .LASF41
-     /tmp/cc2AjMLb.s:1735   .debug_str:0000000000000175 .LASF42
-     /tmp/cc2AjMLb.s:163    .text:0000000000000088 .LFB7
-     /tmp/cc2AjMLb.s:217    .text:00000000000000bc .LFE7
-     /tmp/cc2AjMLb.s:1627   .debug_loc:000000000000011d .LLST2
-     /tmp/cc2AjMLb.s:1737   .debug_str:000000000000019a .LASF43
-     /tmp/cc2AjMLb.s:1783   .debug_str:000000000000037b .LASF44
-     /tmp/cc2AjMLb.s:1707   .debug_str:00000000000000ad .LASF45
-     /tmp/cc2AjMLb.s:120    .text:0000000000000064 .LFB6
-     /tmp/cc2AjMLb.s:157    .text:0000000000000088 .LFE6
-     /tmp/cc2AjMLb.s:1773   .debug_str:0000000000000331 .LASF46
-     /tmp/cc2AjMLb.s:1691   .debug_str:0000000000000037 .LASF47
-     /tmp/cc2AjMLb.s:77     .text:0000000000000040 .LFB5
-     /tmp/cc2AjMLb.s:114    .text:0000000000000064 .LFE5
-     /tmp/cc2AjMLb.s:1789   .debug_str:00000000000003b2 .LASF49
-     /tmp/cc2AjMLb.s:1747   .debug_str:000000000000029f .LASF51
-     /tmp/cc2AjMLb.s:10     .text:0000000000000000 .LFB4
-     /tmp/cc2AjMLb.s:71     .text:0000000000000040 .LFE4
-     /tmp/cc2AjMLb.s:1793   .debug_str:00000000000003c5 .LASF52
-     /tmp/cc2AjMLb.s:1641   .debug_loc:0000000000000156 .LLST0
-     /tmp/cc2AjMLb.s:1683   .debug_str:0000000000000000 .LASF53
-     /tmp/cc2AjMLb.s:1661   .debug_loc:00000000000001a4 .LLST1
-     /tmp/cc2AjMLb.s:510    .text:00000000000001b8 .LVL18
-     /tmp/cc2AjMLb.s:539    .text:00000000000001d4 .LVL19
-     /tmp/cc2AjMLb.s:460    .text:000000000000018c .LVL16
-     /tmp/cc2AjMLb.s:489    .text:00000000000001a8 .LVL17
-     /tmp/cc2AjMLb.s:410    .text:0000000000000160 .LVL14
-     /tmp/cc2AjMLb.s:439    .text:000000000000017c .LVL15
-     /tmp/cc2AjMLb.s:360    .text:0000000000000134 .LVL12
-     /tmp/cc2AjMLb.s:389    .text:0000000000000150 .LVL13
-     /tmp/cc2AjMLb.s:305    .text:0000000000000104 .LVL10
-     /tmp/cc2AjMLb.s:339    .text:0000000000000124 .LVL11
-     /tmp/cc2AjMLb.s:166    .text:0000000000000088 .LVL7
-     /tmp/cc2AjMLb.s:205    .text:00000000000000ac .LVL8
-     /tmp/cc2AjMLb.s:14     .text:0000000000000000 .LVL0
-     /tmp/cc2AjMLb.s:24     .text:0000000000000010 .LVL1
-     /tmp/cc2AjMLb.s:30     .text:0000000000000018 .LVL2
-     /tmp/cc2AjMLb.s:37     .text:0000000000000024 .LVL3
-     /tmp/cc2AjMLb.s:60     .text:0000000000000034 .LVL4
-     /tmp/cc2AjMLb.s:642    .debug_info:0000000000000000 .Ldebug_info0
+     /tmp/ccNEzosr.s:296    .text:0000000000000104 .LFE9
+     /tmp/ccNEzosr.s:1787   .debug_str:00000000000003a6 .LASF39
+     /tmp/ccNEzosr.s:1781   .debug_str:000000000000036a .LASF40
+     /tmp/ccNEzosr.s:223    .text:00000000000000bc .LFB8
+     /tmp/ccNEzosr.s:261    .text:00000000000000e4 .LFE8
+     /tmp/ccNEzosr.s:1779   .debug_str:000000000000035c .LASF41
+     /tmp/ccNEzosr.s:1735   .debug_str:0000000000000175 .LASF42
+     /tmp/ccNEzosr.s:163    .text:0000000000000088 .LFB7
+     /tmp/ccNEzosr.s:217    .text:00000000000000bc .LFE7
+     /tmp/ccNEzosr.s:1627   .debug_loc:000000000000011d .LLST2
+     /tmp/ccNEzosr.s:1737   .debug_str:000000000000019a .LASF43
+     /tmp/ccNEzosr.s:1783   .debug_str:000000000000037b .LASF44
+     /tmp/ccNEzosr.s:1707   .debug_str:00000000000000ad .LASF45
+     /tmp/ccNEzosr.s:120    .text:0000000000000064 .LFB6
+     /tmp/ccNEzosr.s:157    .text:0000000000000088 .LFE6
+     /tmp/ccNEzosr.s:1773   .debug_str:0000000000000331 .LASF46
+     /tmp/ccNEzosr.s:1691   .debug_str:0000000000000037 .LASF47
+     /tmp/ccNEzosr.s:77     .text:0000000000000040 .LFB5
+     /tmp/ccNEzosr.s:114    .text:0000000000000064 .LFE5
+     /tmp/ccNEzosr.s:1789   .debug_str:00000000000003b2 .LASF49
+     /tmp/ccNEzosr.s:1747   .debug_str:000000000000029f .LASF51
+     /tmp/ccNEzosr.s:10     .text:0000000000000000 .LFB4
+     /tmp/ccNEzosr.s:71     .text:0000000000000040 .LFE4
+     /tmp/ccNEzosr.s:1793   .debug_str:00000000000003c5 .LASF52
+     /tmp/ccNEzosr.s:1641   .debug_loc:0000000000000156 .LLST0
+     /tmp/ccNEzosr.s:1683   .debug_str:0000000000000000 .LASF53
+     /tmp/ccNEzosr.s:1661   .debug_loc:00000000000001a4 .LLST1
+     /tmp/ccNEzosr.s:510    .text:00000000000001b8 .LVL18
+     /tmp/ccNEzosr.s:539    .text:00000000000001d4 .LVL19
+     /tmp/ccNEzosr.s:460    .text:000000000000018c .LVL16
+     /tmp/ccNEzosr.s:489    .text:00000000000001a8 .LVL17
+     /tmp/ccNEzosr.s:410    .text:0000000000000160 .LVL14
+     /tmp/ccNEzosr.s:439    .text:000000000000017c .LVL15
+     /tmp/ccNEzosr.s:360    .text:0000000000000134 .LVL12
+     /tmp/ccNEzosr.s:389    .text:0000000000000150 .LVL13
+     /tmp/ccNEzosr.s:305    .text:0000000000000104 .LVL10
+     /tmp/ccNEzosr.s:339    .text:0000000000000124 .LVL11
+     /tmp/ccNEzosr.s:166    .text:0000000000000088 .LVL7
+     /tmp/ccNEzosr.s:205    .text:00000000000000ac .LVL8
+     /tmp/ccNEzosr.s:14     .text:0000000000000000 .LVL0
+     /tmp/ccNEzosr.s:24     .text:0000000000000010 .LVL1
+     /tmp/ccNEzosr.s:30     .text:0000000000000018 .LVL2
+     /tmp/ccNEzosr.s:37     .text:0000000000000024 .LVL3
+     /tmp/ccNEzosr.s:60     .text:0000000000000034 .LVL4
+     /tmp/ccNEzosr.s:642    .debug_info:0000000000000000 .Ldebug_info0
 
 NO UNDEFINED SYMBOLS

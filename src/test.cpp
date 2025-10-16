@@ -1,15 +1,34 @@
-#include "../lib/console.h"
-#include "../h/syscall_c.hpp"
-#include "../h/MemoryAllocator.hpp"
+//
+// Created by marko on 20.4.22..
+//
 
-void main() {
-    void *p1 = MemoryAllocator::Instance()->mem_alloc(100);
-    void *p2 = MemoryAllocator::Instance()->mem_alloc(1000);
-    void *p3 = MemoryAllocator::Instance()->mem_alloc(10000);
-    MemoryAllocator::Instance()->mem_free(p2);
-    void *p4 = MemoryAllocator::Instance()->mem_alloc(900);
-    MemoryAllocator::Instance()->mem_free(p1);
-    MemoryAllocator::Instance()->mem_free(p4);
-    MemoryAllocator::Instance()->mem_free(p3);
-    return;
+#include "../h/ccb.hpp"
+#include "../h/workers.hpp"
+#include "../h/print.hpp"
+
+int main()
+{
+    CCB *coroutines[3];
+
+    coroutines[0] = CCB::createCoroutine(nullptr);
+    CCB::running = coroutines[0];
+
+    coroutines[1] = CCB::createCoroutine(workerBodyA);
+    printString("CoroutineA created\n");
+    coroutines[2] = CCB::createCoroutine(workerBodyB);
+    printString("CoroutineB created\n");
+
+    while (!(coroutines[1]->isFinished() &&
+             coroutines[2]->isFinished()))
+    {
+        CCB::yield();
+    }
+
+    for (auto &coroutine: coroutines)
+    {
+        delete coroutine;
+    }
+    printString("Finished\n");
+
+    return 0;
 }

@@ -1,4 +1,4 @@
-GAS LISTING /tmp/cc5BQ2Q4.s 			page 1
+GAS LISTING /tmp/ccIQTtek.s 			page 1
 
 
    1              		.file	"_new.cpp"
@@ -9,13 +9,13 @@ GAS LISTING /tmp/cc5BQ2Q4.s 			page 1
    6              		.align	2
    7              		.globl	_Znwm
    9              	_Znwm:
-  10              	.LFB0:
+  10              	.LFB4:
   11              		.file 1 "src/_new.cpp"
    1:src/_new.cpp  **** //
    2:src/_new.cpp  **** // Created by marko on 20.4.22..
    3:src/_new.cpp  **** //
    4:src/_new.cpp  **** 
-   5:src/_new.cpp  **** #include "../lib/mem.h"
+   5:src/_new.cpp  **** #include "../h/MemoryAllocator.hpp"
    6:src/_new.cpp  **** 
    7:src/_new.cpp  **** using size_t = decltype(sizeof(0));
    8:src/_new.cpp  **** 
@@ -32,301 +32,707 @@ GAS LISTING /tmp/cc5BQ2Q4.s 			page 1
   20              		.cfi_offset 8, -16
   21 000c 13040101 		addi	s0,sp,16
   22              		.cfi_def_cfa 8, 0
-  11:src/_new.cpp  ****     return __mem_alloc(n);
-  23              		.loc 1 11 5
-  24              		.loc 1 11 23 is_stmt 0
-  25 0010 97000000 		call	__mem_alloc@plt
-  25      E7800000 
-  26              	.LVL1:
+  23 0010 93050500 		mv	a1,a0
+  11:src/_new.cpp  ****     return MemoryAllocator::Instance()->mem_alloc(n);
+  24              		.loc 1 11 5
+  25              	.LBB25:
+  26              	.LBB26:
+  27              		.file 2 "src/../h/MemoryAllocator.hpp"
+   1:src/../h/MemoryAllocator.hpp **** #ifndef PROJECT_BASE_V1_1_MEMORYALLOCATOR_HPP
+   2:src/../h/MemoryAllocator.hpp **** #define PROJECT_BASE_V1_1_MEMORYALLOCATOR_HPP
+   3:src/../h/MemoryAllocator.hpp **** 
+   4:src/../h/MemoryAllocator.hpp **** #include "../lib/hw.h"
+   5:src/../h/MemoryAllocator.hpp **** 
+   6:src/../h/MemoryAllocator.hpp **** class MemoryAllocator {
+   7:src/../h/MemoryAllocator.hpp **** public:
+   8:src/../h/MemoryAllocator.hpp **** 
+   9:src/../h/MemoryAllocator.hpp ****     static MemoryAllocator* Instance() {
+  10:src/../h/MemoryAllocator.hpp ****         static MemoryAllocator memoryAllocator;
+  28              		.loc 2 10 9
+  29              		.loc 2 10 32 is_stmt 0
+  30 0014 97070000 		lbu	a5,_ZGVZN15MemoryAllocator8InstanceEvE15memoryAllocator
+  30      83C70700 
+  31 001c 63920704 		bnez	a5,.L2
+  32              	.LVL1:
+  33              	.LBB27:
+  34              	.LBB28:
+  35              	.LBB29:
+  11:src/../h/MemoryAllocator.hpp ****         return &memoryAllocator;
+GAS LISTING /tmp/ccIQTtek.s 			page 2
+
+
+  12:src/../h/MemoryAllocator.hpp ****     }
+  13:src/../h/MemoryAllocator.hpp **** 
+  14:src/../h/MemoryAllocator.hpp ****     // Allocates a continuous memory block that contains at least size bytes.
+  15:src/../h/MemoryAllocator.hpp ****     void* mem_alloc(size_t size);
+  16:src/../h/MemoryAllocator.hpp **** 
+  17:src/../h/MemoryAllocator.hpp ****     // Frees an allocated block of memory with the given address.
+  18:src/../h/MemoryAllocator.hpp ****     int mem_free(void* addr);
+  19:src/../h/MemoryAllocator.hpp **** 
+  20:src/../h/MemoryAllocator.hpp ****     // Gets the total size of free memory expressed in bytes.
+  21:src/../h/MemoryAllocator.hpp ****     size_t mem_get_free_space();
+  22:src/../h/MemoryAllocator.hpp **** 
+  23:src/../h/MemoryAllocator.hpp ****     // Gets the size of the largest block of free memory expressed in bytes.
+  24:src/../h/MemoryAllocator.hpp ****     size_t mem_get_largest_free_block();
+  25:src/../h/MemoryAllocator.hpp **** 
+  26:src/../h/MemoryAllocator.hpp ****     struct Header {
+  27:src/../h/MemoryAllocator.hpp ****         Header* next;
+  28:src/../h/MemoryAllocator.hpp ****         size_t size;
+  29:src/../h/MemoryAllocator.hpp ****     };
+  30:src/../h/MemoryAllocator.hpp **** 
+  31:src/../h/MemoryAllocator.hpp **** private:
+  32:src/../h/MemoryAllocator.hpp **** 
+  33:src/../h/MemoryAllocator.hpp ****     Header* free_head;
+  34:src/../h/MemoryAllocator.hpp ****     Header* alloc_head;
+  35:src/../h/MemoryAllocator.hpp **** 
+  36:src/../h/MemoryAllocator.hpp ****     MemoryAllocator() : free_head((Header*)HEAP_START_ADDR), alloc_head(nullptr) {
+  36              		.loc 2 36 80
+  37 0020 97070000 		la	a5,HEAP_START_ADDR
+  37      83B70700 
+  38 0028 83B70700 		ld	a5,0(a5)
+  39 002c 17070000 		lla	a4,_ZZN15MemoryAllocator8InstanceEvE15memoryAllocator
+  39      13070700 
+  40 0034 2330F700 		sd	a5,0(a4)
+  41 0038 23340700 		sd	zero,8(a4)
+  37:src/../h/MemoryAllocator.hpp ****         free_head->size = (size_t)HEAP_END_ADDR - (size_t)HEAP_START_ADDR;
+  42              		.loc 2 37 9 is_stmt 1
+  43              		.loc 2 37 49 is_stmt 0
+  44 003c 17070000 		la	a4,HEAP_END_ADDR
+  44      03370700 
+  45 0044 03370700 		ld	a4,0(a4)
+  46 0048 3307F740 		sub	a4,a4,a5
+  47              		.loc 2 37 25
+  48 004c 23B4E700 		sd	a4,8(a5)
+  38:src/../h/MemoryAllocator.hpp ****         free_head->next = nullptr;
+  49              		.loc 2 38 9 is_stmt 1
+  50              		.loc 2 38 25 is_stmt 0
+  51 0050 23B00700 		sd	zero,0(a5)
+  52              	.LVL2:
+  53              	.LBE29:
+  54              	.LBE28:
+  55              	.LBE27:
+  10:src/../h/MemoryAllocator.hpp ****         return &memoryAllocator;
+  56              		.loc 2 10 32
+  57 0054 93071000 		li	a5,1
+  58 0058 17070000 		sb	a5,_ZGVZN15MemoryAllocator8InstanceEvE15memoryAllocator,a4
+  58      2300F700 
+  59              	.L2:
+  11:src/../h/MemoryAllocator.hpp ****     }
+GAS LISTING /tmp/ccIQTtek.s 			page 3
+
+
+  60              		.loc 2 11 9 is_stmt 1
+  61              	.LBE26:
+  62              	.LBE25:
+  63              		.loc 1 11 50 is_stmt 0
+  64 0060 17050000 		lla	a0,_ZZN15MemoryAllocator8InstanceEvE15memoryAllocator
+  64      13050500 
+  65              	.LVL3:
+  66 0068 97000000 		call	_ZN15MemoryAllocator9mem_allocEm@plt
+  66      E7800000 
+  67              	.LVL4:
   12:src/_new.cpp  **** }
-  27              		.loc 1 12 1
-  28 0018 83308100 		ld	ra,8(sp)
-  29              		.cfi_restore 1
-  30 001c 03340100 		ld	s0,0(sp)
-  31              		.cfi_restore 8
-  32              		.cfi_def_cfa 2, 16
-  33 0020 13010101 		addi	sp,sp,16
-  34              		.cfi_def_cfa_offset 0
-  35 0024 67800000 		jr	ra
-  36              		.cfi_endproc
-  37              	.LFE0:
-  39              		.align	2
-  40              		.globl	_Znam
-  42              	_Znam:
-  43              	.LFB1:
+  68              		.loc 1 12 1
+  69 0070 83308100 		ld	ra,8(sp)
+  70              		.cfi_restore 1
+  71 0074 03340100 		ld	s0,0(sp)
+  72              		.cfi_restore 8
+  73              		.cfi_def_cfa 2, 16
+  74 0078 13010101 		addi	sp,sp,16
+  75              		.cfi_def_cfa_offset 0
+  76 007c 67800000 		jr	ra
+  77              		.cfi_endproc
+  78              	.LFE4:
+  80              		.align	2
+  81              		.globl	_Znam
+  83              	_Znam:
+  84              	.LFB5:
   13:src/_new.cpp  **** 
   14:src/_new.cpp  **** void *operator new[](size_t n)
   15:src/_new.cpp  **** {
-  44              		.loc 1 15 1 is_stmt 1
-GAS LISTING /tmp/cc5BQ2Q4.s 			page 2
+  85              		.loc 1 15 1 is_stmt 1
+  86              		.cfi_startproc
+  87              	.LVL5:
+  88 0080 130101FF 		addi	sp,sp,-16
+  89              		.cfi_def_cfa_offset 16
+  90 0084 23341100 		sd	ra,8(sp)
+  91 0088 23308100 		sd	s0,0(sp)
+  92              		.cfi_offset 1, -8
+  93              		.cfi_offset 8, -16
+  94 008c 13040101 		addi	s0,sp,16
+  95              		.cfi_def_cfa 8, 0
+  96 0090 93050500 		mv	a1,a0
+  16:src/_new.cpp  ****     return MemoryAllocator::Instance()->mem_alloc(n);
+  97              		.loc 1 16 5
+  98              	.LBB30:
+  99              	.LBB31:
+  10:src/../h/MemoryAllocator.hpp ****         return &memoryAllocator;
+ 100              		.loc 2 10 9
+  10:src/../h/MemoryAllocator.hpp ****         return &memoryAllocator;
+ 101              		.loc 2 10 32 is_stmt 0
+ 102 0094 97070000 		lbu	a5,_ZGVZN15MemoryAllocator8InstanceEvE15memoryAllocator
+ 102      83C70700 
+ 103 009c 63920704 		bnez	a5,.L5
+ 104              	.LVL6:
+ 105              	.LBB32:
+ 106              	.LBB33:
+ 107              	.LBB34:
+  36:src/../h/MemoryAllocator.hpp ****         free_head->size = (size_t)HEAP_END_ADDR - (size_t)HEAP_START_ADDR;
+GAS LISTING /tmp/ccIQTtek.s 			page 4
 
 
-  45              		.cfi_startproc
-  46              	.LVL2:
-  47 0028 130101FF 		addi	sp,sp,-16
-  48              		.cfi_def_cfa_offset 16
-  49 002c 23341100 		sd	ra,8(sp)
-  50 0030 23308100 		sd	s0,0(sp)
-  51              		.cfi_offset 1, -8
-  52              		.cfi_offset 8, -16
-  53 0034 13040101 		addi	s0,sp,16
-  54              		.cfi_def_cfa 8, 0
-  16:src/_new.cpp  ****     return __mem_alloc(n);
-  55              		.loc 1 16 5
-  56              		.loc 1 16 23 is_stmt 0
-  57 0038 97000000 		call	__mem_alloc@plt
-  57      E7800000 
-  58              	.LVL3:
+ 108              		.loc 2 36 80
+ 109 00a0 97070000 		la	a5,HEAP_START_ADDR
+ 109      83B70700 
+ 110 00a8 83B70700 		ld	a5,0(a5)
+ 111 00ac 17070000 		lla	a4,_ZZN15MemoryAllocator8InstanceEvE15memoryAllocator
+ 111      13070700 
+ 112 00b4 2330F700 		sd	a5,0(a4)
+ 113 00b8 23340700 		sd	zero,8(a4)
+  37:src/../h/MemoryAllocator.hpp ****         free_head->next = nullptr;
+ 114              		.loc 2 37 9 is_stmt 1
+  37:src/../h/MemoryAllocator.hpp ****         free_head->next = nullptr;
+ 115              		.loc 2 37 49 is_stmt 0
+ 116 00bc 17070000 		la	a4,HEAP_END_ADDR
+ 116      03370700 
+ 117 00c4 03370700 		ld	a4,0(a4)
+ 118 00c8 3307F740 		sub	a4,a4,a5
+  37:src/../h/MemoryAllocator.hpp ****         free_head->next = nullptr;
+ 119              		.loc 2 37 25
+ 120 00cc 23B4E700 		sd	a4,8(a5)
+ 121              		.loc 2 38 9 is_stmt 1
+ 122              		.loc 2 38 25 is_stmt 0
+ 123 00d0 23B00700 		sd	zero,0(a5)
+ 124              	.LVL7:
+ 125              	.LBE34:
+ 126              	.LBE33:
+ 127              	.LBE32:
+  10:src/../h/MemoryAllocator.hpp ****         return &memoryAllocator;
+ 128              		.loc 2 10 32
+ 129 00d4 93071000 		li	a5,1
+ 130 00d8 17070000 		sb	a5,_ZGVZN15MemoryAllocator8InstanceEvE15memoryAllocator,a4
+ 130      2300F700 
+ 131              	.L5:
+  11:src/../h/MemoryAllocator.hpp ****     }
+ 132              		.loc 2 11 9 is_stmt 1
+ 133              	.LBE31:
+ 134              	.LBE30:
+ 135              		.loc 1 16 50 is_stmt 0
+ 136 00e0 17050000 		lla	a0,_ZZN15MemoryAllocator8InstanceEvE15memoryAllocator
+ 136      13050500 
+ 137              	.LVL8:
+ 138 00e8 97000000 		call	_ZN15MemoryAllocator9mem_allocEm@plt
+ 138      E7800000 
+ 139              	.LVL9:
   17:src/_new.cpp  **** }
-  59              		.loc 1 17 1
-  60 0040 83308100 		ld	ra,8(sp)
-  61              		.cfi_restore 1
-  62 0044 03340100 		ld	s0,0(sp)
-  63              		.cfi_restore 8
-  64              		.cfi_def_cfa 2, 16
-  65 0048 13010101 		addi	sp,sp,16
-  66              		.cfi_def_cfa_offset 0
-  67 004c 67800000 		jr	ra
-  68              		.cfi_endproc
-  69              	.LFE1:
-  71              		.align	2
-  72              		.globl	_ZdlPv
-  74              	_ZdlPv:
-  75              	.LFB2:
+ 140              		.loc 1 17 1
+ 141 00f0 83308100 		ld	ra,8(sp)
+ 142              		.cfi_restore 1
+ 143 00f4 03340100 		ld	s0,0(sp)
+ 144              		.cfi_restore 8
+ 145              		.cfi_def_cfa 2, 16
+ 146 00f8 13010101 		addi	sp,sp,16
+ 147              		.cfi_def_cfa_offset 0
+ 148 00fc 67800000 		jr	ra
+ 149              		.cfi_endproc
+ 150              	.LFE5:
+ 152              		.align	2
+ 153              		.globl	_ZdlPv
+GAS LISTING /tmp/ccIQTtek.s 			page 5
+
+
+ 155              	_ZdlPv:
+ 156              	.LFB6:
   18:src/_new.cpp  **** 
   19:src/_new.cpp  **** void operator delete(void *p) noexcept
   20:src/_new.cpp  **** {
-  76              		.loc 1 20 1 is_stmt 1
-  77              		.cfi_startproc
-  78              		.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
-  79              		.cfi_lsda 0x1b,.LLSDA2
-  80              	.LVL4:
-  81 0050 130101FF 		addi	sp,sp,-16
-  82              		.cfi_def_cfa_offset 16
-  83 0054 23341100 		sd	ra,8(sp)
-  84 0058 23308100 		sd	s0,0(sp)
-  85              		.cfi_offset 1, -8
-  86              		.cfi_offset 8, -16
-  87 005c 13040101 		addi	s0,sp,16
-  88              		.cfi_def_cfa 8, 0
-  21:src/_new.cpp  ****     __mem_free(p);
-  89              		.loc 1 21 5
-  90              		.loc 1 21 15 is_stmt 0
-  91 0060 97000000 		call	__mem_free@plt
-  91      E7800000 
-  92              	.LVL5:
+ 157              		.loc 1 20 1 is_stmt 1
+ 158              		.cfi_startproc
+ 159              		.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
+ 160              		.cfi_lsda 0x1b,.LLSDA6
+ 161              	.LVL10:
+ 162 0100 130101FF 		addi	sp,sp,-16
+ 163              		.cfi_def_cfa_offset 16
+ 164 0104 23341100 		sd	ra,8(sp)
+ 165 0108 23308100 		sd	s0,0(sp)
+ 166              		.cfi_offset 1, -8
+ 167              		.cfi_offset 8, -16
+ 168 010c 13040101 		addi	s0,sp,16
+ 169              		.cfi_def_cfa 8, 0
+ 170 0110 93050500 		mv	a1,a0
+  21:src/_new.cpp  ****     MemoryAllocator::Instance()->mem_free(p);
+ 171              		.loc 1 21 5
+ 172              	.LBB35:
+ 173              	.LBB36:
+  10:src/../h/MemoryAllocator.hpp ****         return &memoryAllocator;
+ 174              		.loc 2 10 9
+  10:src/../h/MemoryAllocator.hpp ****         return &memoryAllocator;
+ 175              		.loc 2 10 32 is_stmt 0
+ 176 0114 97070000 		lbu	a5,_ZGVZN15MemoryAllocator8InstanceEvE15memoryAllocator
+ 176      83C70700 
+ 177 011c 63920704 		bnez	a5,.L8
+ 178              	.LVL11:
+ 179              	.LBB37:
+ 180              	.LBB38:
+ 181              	.LBB39:
+  36:src/../h/MemoryAllocator.hpp ****         free_head->size = (size_t)HEAP_END_ADDR - (size_t)HEAP_START_ADDR;
+ 182              		.loc 2 36 80
+ 183 0120 97070000 		la	a5,HEAP_START_ADDR
+ 183      83B70700 
+ 184 0128 83B70700 		ld	a5,0(a5)
+ 185 012c 17070000 		lla	a4,_ZZN15MemoryAllocator8InstanceEvE15memoryAllocator
+ 185      13070700 
+ 186 0134 2330F700 		sd	a5,0(a4)
+ 187 0138 23340700 		sd	zero,8(a4)
+  37:src/../h/MemoryAllocator.hpp ****         free_head->next = nullptr;
+ 188              		.loc 2 37 9 is_stmt 1
+  37:src/../h/MemoryAllocator.hpp ****         free_head->next = nullptr;
+ 189              		.loc 2 37 49 is_stmt 0
+ 190 013c 17070000 		la	a4,HEAP_END_ADDR
+ 190      03370700 
+ 191 0144 03370700 		ld	a4,0(a4)
+ 192 0148 3307F740 		sub	a4,a4,a5
+  37:src/../h/MemoryAllocator.hpp ****         free_head->next = nullptr;
+ 193              		.loc 2 37 25
+ 194 014c 23B4E700 		sd	a4,8(a5)
+ 195              		.loc 2 38 9 is_stmt 1
+ 196              		.loc 2 38 25 is_stmt 0
+ 197 0150 23B00700 		sd	zero,0(a5)
+GAS LISTING /tmp/ccIQTtek.s 			page 6
+
+
+ 198              	.LVL12:
+ 199              	.LBE39:
+ 200              	.LBE38:
+ 201              	.LBE37:
+  10:src/../h/MemoryAllocator.hpp ****         return &memoryAllocator;
+ 202              		.loc 2 10 32
+ 203 0154 93071000 		li	a5,1
+ 204 0158 17070000 		sb	a5,_ZGVZN15MemoryAllocator8InstanceEvE15memoryAllocator,a4
+ 204      2300F700 
+ 205              	.L8:
+  11:src/../h/MemoryAllocator.hpp ****     }
+ 206              		.loc 2 11 9 is_stmt 1
+ 207              	.LBE36:
+ 208              	.LBE35:
+ 209              		.loc 1 21 42 is_stmt 0
+ 210 0160 17050000 		lla	a0,_ZZN15MemoryAllocator8InstanceEvE15memoryAllocator
+ 210      13050500 
+ 211              	.LVL13:
+ 212 0168 97000000 		call	_ZN15MemoryAllocator8mem_freeEPv@plt
+ 212      E7800000 
+ 213              	.LVL14:
   22:src/_new.cpp  **** }
-  93              		.loc 1 22 1
-  94 0068 83308100 		ld	ra,8(sp)
-GAS LISTING /tmp/cc5BQ2Q4.s 			page 3
-
-
-  95              		.cfi_restore 1
-  96 006c 03340100 		ld	s0,0(sp)
-  97              		.cfi_restore 8
-  98              		.cfi_def_cfa 2, 16
-  99 0070 13010101 		addi	sp,sp,16
- 100              		.cfi_def_cfa_offset 0
- 101 0074 67800000 		jr	ra
- 102              		.cfi_endproc
- 103              	.LFE2:
- 104              		.globl	__gxx_personality_v0
- 105              		.section	.gcc_except_table,"a",@progbits
- 106              	.LLSDA2:
- 107 0000 FF       		.byte	0xff
- 108 0001 FF       		.byte	0xff
- 109 0002 03       		.byte	0x3
- 110 0003 00       		.byte	0
- 111              		.text
- 113              		.align	2
- 114              		.globl	_ZdaPv
- 116              	_ZdaPv:
- 117              	.LFB3:
+ 214              		.loc 1 22 1
+ 215 0170 83308100 		ld	ra,8(sp)
+ 216              		.cfi_restore 1
+ 217 0174 03340100 		ld	s0,0(sp)
+ 218              		.cfi_restore 8
+ 219              		.cfi_def_cfa 2, 16
+ 220 0178 13010101 		addi	sp,sp,16
+ 221              		.cfi_def_cfa_offset 0
+ 222 017c 67800000 		jr	ra
+ 223              		.cfi_endproc
+ 224              	.LFE6:
+ 225              		.globl	__gxx_personality_v0
+ 226              		.section	.gcc_except_table,"a",@progbits
+ 227              	.LLSDA6:
+ 228 0000 FF       		.byte	0xff
+ 229 0001 FF       		.byte	0xff
+ 230 0002 03       		.byte	0x3
+ 231 0003 00       		.byte	0
+ 232              		.text
+ 234              		.align	2
+ 235              		.globl	_ZdaPv
+ 237              	_ZdaPv:
+ 238              	.LFB7:
   23:src/_new.cpp  **** 
   24:src/_new.cpp  **** void operator delete[](void *p) noexcept
   25:src/_new.cpp  **** {
- 118              		.loc 1 25 1 is_stmt 1
- 119              		.cfi_startproc
- 120              		.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
- 121              		.cfi_lsda 0x1b,.LLSDA3
- 122              	.LVL6:
- 123 0078 130101FF 		addi	sp,sp,-16
- 124              		.cfi_def_cfa_offset 16
- 125 007c 23341100 		sd	ra,8(sp)
- 126 0080 23308100 		sd	s0,0(sp)
- 127              		.cfi_offset 1, -8
- 128              		.cfi_offset 8, -16
- 129 0084 13040101 		addi	s0,sp,16
- 130              		.cfi_def_cfa 8, 0
-  26:src/_new.cpp  ****     __mem_free(p);
- 131              		.loc 1 26 5
- 132              		.loc 1 26 15 is_stmt 0
- 133 0088 97000000 		call	__mem_free@plt
- 133      E7800000 
- 134              	.LVL7:
+ 239              		.loc 1 25 1 is_stmt 1
+ 240              		.cfi_startproc
+ 241              		.cfi_personality 0x9b,DW.ref.__gxx_personality_v0
+ 242              		.cfi_lsda 0x1b,.LLSDA7
+ 243              	.LVL15:
+ 244 0180 130101FF 		addi	sp,sp,-16
+ 245              		.cfi_def_cfa_offset 16
+ 246 0184 23341100 		sd	ra,8(sp)
+ 247 0188 23308100 		sd	s0,0(sp)
+GAS LISTING /tmp/ccIQTtek.s 			page 7
+
+
+ 248              		.cfi_offset 1, -8
+ 249              		.cfi_offset 8, -16
+ 250 018c 13040101 		addi	s0,sp,16
+ 251              		.cfi_def_cfa 8, 0
+ 252 0190 93050500 		mv	a1,a0
+  26:src/_new.cpp  ****     MemoryAllocator::Instance()->mem_free(p);
+ 253              		.loc 1 26 5
+ 254              	.LBB40:
+ 255              	.LBB41:
+  10:src/../h/MemoryAllocator.hpp ****         return &memoryAllocator;
+ 256              		.loc 2 10 9
+  10:src/../h/MemoryAllocator.hpp ****         return &memoryAllocator;
+ 257              		.loc 2 10 32 is_stmt 0
+ 258 0194 97070000 		lbu	a5,_ZGVZN15MemoryAllocator8InstanceEvE15memoryAllocator
+ 258      83C70700 
+ 259 019c 63920704 		bnez	a5,.L11
+ 260              	.LVL16:
+ 261              	.LBB42:
+ 262              	.LBB43:
+ 263              	.LBB44:
+  36:src/../h/MemoryAllocator.hpp ****         free_head->size = (size_t)HEAP_END_ADDR - (size_t)HEAP_START_ADDR;
+ 264              		.loc 2 36 80
+ 265 01a0 97070000 		la	a5,HEAP_START_ADDR
+ 265      83B70700 
+ 266 01a8 83B70700 		ld	a5,0(a5)
+ 267 01ac 17070000 		lla	a4,_ZZN15MemoryAllocator8InstanceEvE15memoryAllocator
+ 267      13070700 
+ 268 01b4 2330F700 		sd	a5,0(a4)
+ 269 01b8 23340700 		sd	zero,8(a4)
+  37:src/../h/MemoryAllocator.hpp ****         free_head->next = nullptr;
+ 270              		.loc 2 37 9 is_stmt 1
+  37:src/../h/MemoryAllocator.hpp ****         free_head->next = nullptr;
+ 271              		.loc 2 37 49 is_stmt 0
+ 272 01bc 17070000 		la	a4,HEAP_END_ADDR
+ 272      03370700 
+ 273 01c4 03370700 		ld	a4,0(a4)
+ 274 01c8 3307F740 		sub	a4,a4,a5
+  37:src/../h/MemoryAllocator.hpp ****         free_head->next = nullptr;
+ 275              		.loc 2 37 25
+ 276 01cc 23B4E700 		sd	a4,8(a5)
+ 277              		.loc 2 38 9 is_stmt 1
+ 278              		.loc 2 38 25 is_stmt 0
+ 279 01d0 23B00700 		sd	zero,0(a5)
+ 280              	.LVL17:
+ 281              	.LBE44:
+ 282              	.LBE43:
+ 283              	.LBE42:
+  10:src/../h/MemoryAllocator.hpp ****         return &memoryAllocator;
+ 284              		.loc 2 10 32
+ 285 01d4 93071000 		li	a5,1
+ 286 01d8 17070000 		sb	a5,_ZGVZN15MemoryAllocator8InstanceEvE15memoryAllocator,a4
+ 286      2300F700 
+ 287              	.L11:
+  11:src/../h/MemoryAllocator.hpp ****     }
+ 288              		.loc 2 11 9 is_stmt 1
+ 289              	.LBE41:
+ 290              	.LBE40:
+GAS LISTING /tmp/ccIQTtek.s 			page 8
+
+
+ 291              		.loc 1 26 42 is_stmt 0
+ 292 01e0 17050000 		lla	a0,_ZZN15MemoryAllocator8InstanceEvE15memoryAllocator
+ 292      13050500 
+ 293              	.LVL18:
+ 294 01e8 97000000 		call	_ZN15MemoryAllocator8mem_freeEPv@plt
+ 294      E7800000 
+ 295              	.LVL19:
   27:src/_new.cpp  **** }...
- 135              		.loc 1 27 1
- 136 0090 83308100 		ld	ra,8(sp)
- 137              		.cfi_restore 1
- 138 0094 03340100 		ld	s0,0(sp)
- 139              		.cfi_restore 8
- 140              		.cfi_def_cfa 2, 16
- 141 0098 13010101 		addi	sp,sp,16
- 142              		.cfi_def_cfa_offset 0
- 143 009c 67800000 		jr	ra
- 144              		.cfi_endproc
- 145              	.LFE3:
- 146              		.section	.gcc_except_table
- 147              	.LLSDA3:
-GAS LISTING /tmp/cc5BQ2Q4.s 			page 4
-
-
- 148 0004 FF       		.byte	0xff
- 149 0005 FF       		.byte	0xff
- 150 0006 03       		.byte	0x3
- 151 0007 00       		.byte	0
- 152              		.text
- 154              	.Letext0:
- 155              		.file 2 "src/../lib/hw.h"
- 156              		.file 3 "src/../lib/mem.h"
- 791              		.align	3
- 794              	DW.ref.__gxx_personality_v0:
- 795 0000 00000000 		.dword	__gxx_personality_v0
- 795      00000000 
- 796              		.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1~20.04) 9.4.0"
- 797              		.section	.note.GNU-stack,"",@progbits
-GAS LISTING /tmp/cc5BQ2Q4.s 			page 5
+ 296              		.loc 1 27 1
+ 297 01f0 83308100 		ld	ra,8(sp)
+ 298              		.cfi_restore 1
+ 299 01f4 03340100 		ld	s0,0(sp)
+ 300              		.cfi_restore 8
+ 301              		.cfi_def_cfa 2, 16
+ 302 01f8 13010101 		addi	sp,sp,16
+ 303              		.cfi_def_cfa_offset 0
+ 304 01fc 67800000 		jr	ra
+ 305              		.cfi_endproc
+ 306              	.LFE7:
+ 307              		.section	.gcc_except_table
+ 308              	.LLSDA7:
+ 309 0004 FF       		.byte	0xff
+ 310 0005 FF       		.byte	0xff
+ 311 0006 03       		.byte	0x3
+ 312 0007 00       		.byte	0
+ 313              		.text
+ 315              		.weak	_ZGVZN15MemoryAllocator8InstanceEvE15memoryAllocator
+ 316              		.section	.bss._ZGVZN15MemoryAllocator8InstanceEvE15memoryAllocator,"awG",@nobits,_ZGVZN15MemoryAll
+ 317              		.align	3
+ 320              	_ZGVZN15MemoryAllocator8InstanceEvE15memoryAllocator:
+ 321 0000 00000000 		.zero	8
+ 321      00000000 
+ 322              		.weak	_ZZN15MemoryAllocator8InstanceEvE15memoryAllocator
+ 323              		.section	.bss._ZZN15MemoryAllocator8InstanceEvE15memoryAllocator,"awG",@nobits,_ZZN15MemoryAllocat
+ 324              		.align	3
+ 327              	_ZZN15MemoryAllocator8InstanceEvE15memoryAllocator:
+ 328 0000 00000000 		.zero	16
+ 328      00000000 
+ 328      00000000 
+ 328      00000000 
+ 329              		.text
+ 330              	.Letext0:
+ 331              		.file 3 "src/../h/../lib/hw.h"
+ 1571              		.align	3
+ 1574              	DW.ref.__gxx_personality_v0:
+ 1575 0000 00000000 		.dword	__gxx_personality_v0
+ 1575      00000000 
+ 1576              		.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1~20.04) 9.4.0"
+ 1577              		.section	.note.GNU-stack,"",@progbits
+GAS LISTING /tmp/ccIQTtek.s 			page 9
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 _new.cpp
-     /tmp/cc5BQ2Q4.s:9      .text:0000000000000000 _Znwm
-     /tmp/cc5BQ2Q4.s:13     .text:0000000000000000 .L0 
-     /tmp/cc5BQ2Q4.s:15     .text:0000000000000000 .L0 
-     /tmp/cc5BQ2Q4.s:16     .text:0000000000000004 .L0 
-     /tmp/cc5BQ2Q4.s:19     .text:000000000000000c .L0 
-     /tmp/cc5BQ2Q4.s:20     .text:000000000000000c .L0 
-     /tmp/cc5BQ2Q4.s:22     .text:0000000000000010 .L0 
-     /tmp/cc5BQ2Q4.s:24     .text:0000000000000010 .L0 
-     /tmp/cc5BQ2Q4.s:25     .text:0000000000000010 .L0 
-     /tmp/cc5BQ2Q4.s:28     .text:0000000000000018 .L0 
-     /tmp/cc5BQ2Q4.s:29     .text:000000000000001c .L0 
-     /tmp/cc5BQ2Q4.s:31     .text:0000000000000020 .L0 
-     /tmp/cc5BQ2Q4.s:32     .text:0000000000000020 .L0 
-     /tmp/cc5BQ2Q4.s:34     .text:0000000000000024 .L0 
-     /tmp/cc5BQ2Q4.s:36     .text:0000000000000028 .L0 
-     /tmp/cc5BQ2Q4.s:42     .text:0000000000000028 _Znam
-     /tmp/cc5BQ2Q4.s:45     .text:0000000000000028 .L0 
-     /tmp/cc5BQ2Q4.s:47     .text:0000000000000028 .L0 
-     /tmp/cc5BQ2Q4.s:48     .text:000000000000002c .L0 
-     /tmp/cc5BQ2Q4.s:51     .text:0000000000000034 .L0 
-     /tmp/cc5BQ2Q4.s:52     .text:0000000000000034 .L0 
-     /tmp/cc5BQ2Q4.s:54     .text:0000000000000038 .L0 
-     /tmp/cc5BQ2Q4.s:56     .text:0000000000000038 .L0 
-     /tmp/cc5BQ2Q4.s:57     .text:0000000000000038 .L0 
-     /tmp/cc5BQ2Q4.s:60     .text:0000000000000040 .L0 
-     /tmp/cc5BQ2Q4.s:61     .text:0000000000000044 .L0 
-     /tmp/cc5BQ2Q4.s:63     .text:0000000000000048 .L0 
-     /tmp/cc5BQ2Q4.s:64     .text:0000000000000048 .L0 
-     /tmp/cc5BQ2Q4.s:66     .text:000000000000004c .L0 
-     /tmp/cc5BQ2Q4.s:68     .text:0000000000000050 .L0 
-     /tmp/cc5BQ2Q4.s:74     .text:0000000000000050 _ZdlPv
-     /tmp/cc5BQ2Q4.s:77     .text:0000000000000050 .L0 
-     /tmp/cc5BQ2Q4.s:794    .data.rel.local.DW.ref.__gxx_personality_v0:0000000000000000 DW.ref.__gxx_personality_v0
-     /tmp/cc5BQ2Q4.s:81     .text:0000000000000050 .L0 
-     /tmp/cc5BQ2Q4.s:82     .text:0000000000000054 .L0 
-     /tmp/cc5BQ2Q4.s:85     .text:000000000000005c .L0 
-     /tmp/cc5BQ2Q4.s:86     .text:000000000000005c .L0 
-     /tmp/cc5BQ2Q4.s:88     .text:0000000000000060 .L0 
-     /tmp/cc5BQ2Q4.s:90     .text:0000000000000060 .L0 
-     /tmp/cc5BQ2Q4.s:91     .text:0000000000000060 .L0 
-     /tmp/cc5BQ2Q4.s:94     .text:0000000000000068 .L0 
-     /tmp/cc5BQ2Q4.s:95     .text:000000000000006c .L0 
-     /tmp/cc5BQ2Q4.s:97     .text:0000000000000070 .L0 
-     /tmp/cc5BQ2Q4.s:98     .text:0000000000000070 .L0 
-     /tmp/cc5BQ2Q4.s:100    .text:0000000000000074 .L0 
-     /tmp/cc5BQ2Q4.s:102    .text:0000000000000078 .L0 
-     /tmp/cc5BQ2Q4.s:116    .text:0000000000000078 _ZdaPv
-     /tmp/cc5BQ2Q4.s:119    .text:0000000000000078 .L0 
-     /tmp/cc5BQ2Q4.s:123    .text:0000000000000078 .L0 
-     /tmp/cc5BQ2Q4.s:124    .text:000000000000007c .L0 
-     /tmp/cc5BQ2Q4.s:127    .text:0000000000000084 .L0 
-     /tmp/cc5BQ2Q4.s:128    .text:0000000000000084 .L0 
-     /tmp/cc5BQ2Q4.s:130    .text:0000000000000088 .L0 
-     /tmp/cc5BQ2Q4.s:132    .text:0000000000000088 .L0 
-     /tmp/cc5BQ2Q4.s:133    .text:0000000000000088 .L0 
-GAS LISTING /tmp/cc5BQ2Q4.s 			page 6
+     /tmp/ccIQTtek.s:9      .text:0000000000000000 _Znwm
+     /tmp/ccIQTtek.s:13     .text:0000000000000000 .L0 
+     /tmp/ccIQTtek.s:15     .text:0000000000000000 .L0 
+     /tmp/ccIQTtek.s:16     .text:0000000000000004 .L0 
+     /tmp/ccIQTtek.s:19     .text:000000000000000c .L0 
+     /tmp/ccIQTtek.s:20     .text:000000000000000c .L0 
+     /tmp/ccIQTtek.s:22     .text:0000000000000010 .L0 
+     /tmp/ccIQTtek.s:28     .text:0000000000000014 .L0 
+     /tmp/ccIQTtek.s:29     .text:0000000000000014 .L0 
+     /tmp/ccIQTtek.s:320    .bss._ZGVZN15MemoryAllocator8InstanceEvE15memoryAllocator:0000000000000000 _ZGVZN15MemoryAllocator8InstanceEvE15memoryAllocator
+     /tmp/ccIQTtek.s:30     .text:0000000000000014 .L0 
+     /tmp/ccIQTtek.s:37     .text:0000000000000020 .L0 
+     /tmp/ccIQTtek.s:327    .bss._ZZN15MemoryAllocator8InstanceEvE15memoryAllocator:0000000000000000 _ZZN15MemoryAllocator8InstanceEvE15memoryAllocator
+     /tmp/ccIQTtek.s:43     .text:000000000000003c .L0 
+     /tmp/ccIQTtek.s:44     .text:000000000000003c .L0 
+     /tmp/ccIQTtek.s:48     .text:000000000000004c .L0 
+     /tmp/ccIQTtek.s:50     .text:0000000000000050 .L0 
+     /tmp/ccIQTtek.s:51     .text:0000000000000050 .L0 
+     /tmp/ccIQTtek.s:57     .text:0000000000000054 .L0 
+     /tmp/ccIQTtek.s:63     .text:0000000000000060 .L0 
+     /tmp/ccIQTtek.s:64     .text:0000000000000060 .L0 
+     /tmp/ccIQTtek.s:69     .text:0000000000000070 .L0 
+     /tmp/ccIQTtek.s:70     .text:0000000000000074 .L0 
+     /tmp/ccIQTtek.s:72     .text:0000000000000078 .L0 
+     /tmp/ccIQTtek.s:73     .text:0000000000000078 .L0 
+     /tmp/ccIQTtek.s:75     .text:000000000000007c .L0 
+     /tmp/ccIQTtek.s:77     .text:0000000000000080 .L0 
+     /tmp/ccIQTtek.s:83     .text:0000000000000080 _Znam
+     /tmp/ccIQTtek.s:86     .text:0000000000000080 .L0 
+     /tmp/ccIQTtek.s:88     .text:0000000000000080 .L0 
+     /tmp/ccIQTtek.s:89     .text:0000000000000084 .L0 
+     /tmp/ccIQTtek.s:92     .text:000000000000008c .L0 
+     /tmp/ccIQTtek.s:93     .text:000000000000008c .L0 
+     /tmp/ccIQTtek.s:95     .text:0000000000000090 .L0 
+     /tmp/ccIQTtek.s:100    .text:0000000000000094 .L0 
+     /tmp/ccIQTtek.s:101    .text:0000000000000094 .L0 
+     /tmp/ccIQTtek.s:102    .text:0000000000000094 .L0 
+     /tmp/ccIQTtek.s:109    .text:00000000000000a0 .L0 
+     /tmp/ccIQTtek.s:115    .text:00000000000000bc .L0 
+     /tmp/ccIQTtek.s:116    .text:00000000000000bc .L0 
+     /tmp/ccIQTtek.s:120    .text:00000000000000cc .L0 
+     /tmp/ccIQTtek.s:122    .text:00000000000000d0 .L0 
+     /tmp/ccIQTtek.s:123    .text:00000000000000d0 .L0 
+     /tmp/ccIQTtek.s:129    .text:00000000000000d4 .L0 
+     /tmp/ccIQTtek.s:135    .text:00000000000000e0 .L0 
+     /tmp/ccIQTtek.s:136    .text:00000000000000e0 .L0 
+     /tmp/ccIQTtek.s:141    .text:00000000000000f0 .L0 
+     /tmp/ccIQTtek.s:142    .text:00000000000000f4 .L0 
+     /tmp/ccIQTtek.s:144    .text:00000000000000f8 .L0 
+     /tmp/ccIQTtek.s:145    .text:00000000000000f8 .L0 
+     /tmp/ccIQTtek.s:147    .text:00000000000000fc .L0 
+     /tmp/ccIQTtek.s:149    .text:0000000000000100 .L0 
+     /tmp/ccIQTtek.s:155    .text:0000000000000100 _ZdlPv
+     /tmp/ccIQTtek.s:158    .text:0000000000000100 .L0 
+     /tmp/ccIQTtek.s:1574   .data.rel.local.DW.ref.__gxx_personality_v0:0000000000000000 DW.ref.__gxx_personality_v0
+GAS LISTING /tmp/ccIQTtek.s 			page 10
 
 
-     /tmp/cc5BQ2Q4.s:136    .text:0000000000000090 .L0 
-     /tmp/cc5BQ2Q4.s:137    .text:0000000000000094 .L0 
-     /tmp/cc5BQ2Q4.s:139    .text:0000000000000098 .L0 
-     /tmp/cc5BQ2Q4.s:140    .text:0000000000000098 .L0 
-     /tmp/cc5BQ2Q4.s:142    .text:000000000000009c .L0 
-     /tmp/cc5BQ2Q4.s:144    .text:00000000000000a0 .L0 
-     /tmp/cc5BQ2Q4.s:157    .text:00000000000000a0 .L0 
-     /tmp/cc5BQ2Q4.s:417    .debug_abbrev:0000000000000000 .Ldebug_abbrev0
-     /tmp/cc5BQ2Q4.s:774    .debug_str:0000000000000162 .LASF27
-     /tmp/cc5BQ2Q4.s:786    .debug_str:0000000000000262 .LASF28
-     /tmp/cc5BQ2Q4.s:744    .debug_str:0000000000000068 .LASF29
-     /tmp/cc5BQ2Q4.s:5      .text:0000000000000000 .Ltext0
-     /tmp/cc5BQ2Q4.s:154    .text:00000000000000a0 .Letext0
-     /tmp/cc5BQ2Q4.s:726    .debug_line:0000000000000000 .Ldebug_line0
-     /tmp/cc5BQ2Q4.s:734    .debug_str:0000000000000027 .LASF0
-     /tmp/cc5BQ2Q4.s:772    .debug_str:000000000000014f .LASF1
-     /tmp/cc5BQ2Q4.s:758    .debug_str:00000000000000dc .LASF2
-     /tmp/cc5BQ2Q4.s:752    .debug_str:00000000000000b9 .LASF4
-     /tmp/cc5BQ2Q4.s:748    .debug_str:0000000000000094 .LASF3
-     /tmp/cc5BQ2Q4.s:740    .debug_str:0000000000000051 .LASF5
-     /tmp/cc5BQ2Q4.s:750    .debug_str:00000000000000a6 .LASF6
-     /tmp/cc5BQ2Q4.s:770    .debug_str:000000000000013c .LASF7
-     /tmp/cc5BQ2Q4.s:782    .debug_str:0000000000000242 .LASF8
-     /tmp/cc5BQ2Q4.s:736    .debug_str:0000000000000034 .LASF9
-     /tmp/cc5BQ2Q4.s:738    .debug_str:0000000000000042 .LASF10
-     /tmp/cc5BQ2Q4.s:776    .debug_str:0000000000000226 .LASF11
-     /tmp/cc5BQ2Q4.s:742    .debug_str:0000000000000058 .LASF12
-     /tmp/cc5BQ2Q4.s:784    .debug_str:0000000000000252 .LASF13
-     /tmp/cc5BQ2Q4.s:756    .debug_str:00000000000000d0 .LASF14
-     /tmp/cc5BQ2Q4.s:766    .debug_str:0000000000000120 .LASF15
-     /tmp/cc5BQ2Q4.s:762    .debug_str:00000000000000fd .LASF16
-     /tmp/cc5BQ2Q4.s:760    .debug_str:00000000000000ea .LASF17
-     /tmp/cc5BQ2Q4.s:778    .debug_str:0000000000000235 .LASF19
-     /tmp/cc5BQ2Q4.s:117    .text:0000000000000078 .LFB3
-     /tmp/cc5BQ2Q4.s:145    .text:00000000000000a0 .LFE3
-     /tmp/cc5BQ2Q4.s:657    .debug_loc:0000000000000000 .LLST3
-     /tmp/cc5BQ2Q4.s:134    .text:0000000000000090 .LVL7
-     /tmp/cc5BQ2Q4.s:754    .debug_str:00000000000000c0 .LASF18
-     /tmp/cc5BQ2Q4.s:746    .debug_str:000000000000008d .LASF20
-     /tmp/cc5BQ2Q4.s:75     .text:0000000000000050 .LFB2
-     /tmp/cc5BQ2Q4.s:103    .text:0000000000000078 .LFE2
-     /tmp/cc5BQ2Q4.s:671    .debug_loc:0000000000000039 .LLST2
-     /tmp/cc5BQ2Q4.s:92     .text:0000000000000068 .LVL5
-     /tmp/cc5BQ2Q4.s:730    .debug_str:000000000000000b .LASF21
-     /tmp/cc5BQ2Q4.s:768    .debug_str:0000000000000136 .LASF23
-     /tmp/cc5BQ2Q4.s:43     .text:0000000000000028 .LFB1
-     /tmp/cc5BQ2Q4.s:69     .text:0000000000000050 .LFE1
-     /tmp/cc5BQ2Q4.s:685    .debug_loc:0000000000000072 .LLST1
-     /tmp/cc5BQ2Q4.s:58     .text:0000000000000040 .LVL3
-     /tmp/cc5BQ2Q4.s:764    .debug_str:0000000000000113 .LASF22
-     /tmp/cc5BQ2Q4.s:780    .debug_str:000000000000023c .LASF24
-     /tmp/cc5BQ2Q4.s:10     .text:0000000000000000 .LFB0
-     /tmp/cc5BQ2Q4.s:37     .text:0000000000000028 .LFE0
-     /tmp/cc5BQ2Q4.s:699    .debug_loc:00000000000000ab .LLST0
-     /tmp/cc5BQ2Q4.s:26     .text:0000000000000018 .LVL1
-     /tmp/cc5BQ2Q4.s:728    .debug_str:0000000000000000 .LASF25
-     /tmp/cc5BQ2Q4.s:732    .debug_str:000000000000001b .LASF26
-GAS LISTING /tmp/cc5BQ2Q4.s 			page 7
+     /tmp/ccIQTtek.s:162    .text:0000000000000100 .L0 
+     /tmp/ccIQTtek.s:163    .text:0000000000000104 .L0 
+     /tmp/ccIQTtek.s:166    .text:000000000000010c .L0 
+     /tmp/ccIQTtek.s:167    .text:000000000000010c .L0 
+     /tmp/ccIQTtek.s:169    .text:0000000000000110 .L0 
+     /tmp/ccIQTtek.s:174    .text:0000000000000114 .L0 
+     /tmp/ccIQTtek.s:175    .text:0000000000000114 .L0 
+     /tmp/ccIQTtek.s:176    .text:0000000000000114 .L0 
+     /tmp/ccIQTtek.s:183    .text:0000000000000120 .L0 
+     /tmp/ccIQTtek.s:189    .text:000000000000013c .L0 
+     /tmp/ccIQTtek.s:190    .text:000000000000013c .L0 
+     /tmp/ccIQTtek.s:194    .text:000000000000014c .L0 
+     /tmp/ccIQTtek.s:196    .text:0000000000000150 .L0 
+     /tmp/ccIQTtek.s:197    .text:0000000000000150 .L0 
+     /tmp/ccIQTtek.s:203    .text:0000000000000154 .L0 
+     /tmp/ccIQTtek.s:209    .text:0000000000000160 .L0 
+     /tmp/ccIQTtek.s:210    .text:0000000000000160 .L0 
+     /tmp/ccIQTtek.s:215    .text:0000000000000170 .L0 
+     /tmp/ccIQTtek.s:216    .text:0000000000000174 .L0 
+     /tmp/ccIQTtek.s:218    .text:0000000000000178 .L0 
+     /tmp/ccIQTtek.s:219    .text:0000000000000178 .L0 
+     /tmp/ccIQTtek.s:221    .text:000000000000017c .L0 
+     /tmp/ccIQTtek.s:223    .text:0000000000000180 .L0 
+     /tmp/ccIQTtek.s:237    .text:0000000000000180 _ZdaPv
+     /tmp/ccIQTtek.s:240    .text:0000000000000180 .L0 
+     /tmp/ccIQTtek.s:244    .text:0000000000000180 .L0 
+     /tmp/ccIQTtek.s:245    .text:0000000000000184 .L0 
+     /tmp/ccIQTtek.s:248    .text:000000000000018c .L0 
+     /tmp/ccIQTtek.s:249    .text:000000000000018c .L0 
+     /tmp/ccIQTtek.s:251    .text:0000000000000190 .L0 
+     /tmp/ccIQTtek.s:256    .text:0000000000000194 .L0 
+     /tmp/ccIQTtek.s:257    .text:0000000000000194 .L0 
+     /tmp/ccIQTtek.s:258    .text:0000000000000194 .L0 
+     /tmp/ccIQTtek.s:265    .text:00000000000001a0 .L0 
+     /tmp/ccIQTtek.s:271    .text:00000000000001bc .L0 
+     /tmp/ccIQTtek.s:272    .text:00000000000001bc .L0 
+     /tmp/ccIQTtek.s:276    .text:00000000000001cc .L0 
+     /tmp/ccIQTtek.s:278    .text:00000000000001d0 .L0 
+     /tmp/ccIQTtek.s:279    .text:00000000000001d0 .L0 
+     /tmp/ccIQTtek.s:285    .text:00000000000001d4 .L0 
+     /tmp/ccIQTtek.s:291    .text:00000000000001e0 .L0 
+     /tmp/ccIQTtek.s:292    .text:00000000000001e0 .L0 
+     /tmp/ccIQTtek.s:297    .text:00000000000001f0 .L0 
+     /tmp/ccIQTtek.s:298    .text:00000000000001f4 .L0 
+     /tmp/ccIQTtek.s:300    .text:00000000000001f8 .L0 
+     /tmp/ccIQTtek.s:301    .text:00000000000001f8 .L0 
+     /tmp/ccIQTtek.s:303    .text:00000000000001fc .L0 
+     /tmp/ccIQTtek.s:305    .text:0000000000000200 .L0 
+     /tmp/ccIQTtek.s:332    .text:0000000000000200 .L0 
+     /tmp/ccIQTtek.s:30     .text:0000000000000014 .L0 
+     /tmp/ccIQTtek.s:37     .text:0000000000000020 .L0 
+     /tmp/ccIQTtek.s:39     .text:000000000000002c .L0 
+     /tmp/ccIQTtek.s:44     .text:000000000000003c .L0 
+     /tmp/ccIQTtek.s:58     .text:0000000000000058 .L0 
+     /tmp/ccIQTtek.s:64     .text:0000000000000060 .L0 
+     /tmp/ccIQTtek.s:102    .text:0000000000000094 .L0 
+     /tmp/ccIQTtek.s:109    .text:00000000000000a0 .L0 
+GAS LISTING /tmp/ccIQTtek.s 			page 11
 
 
-     /tmp/cc5BQ2Q4.s:122    .text:0000000000000078 .LVL6
-     /tmp/cc5BQ2Q4.s:80     .text:0000000000000050 .LVL4
-     /tmp/cc5BQ2Q4.s:46     .text:0000000000000028 .LVL2
-     /tmp/cc5BQ2Q4.s:14     .text:0000000000000000 .LVL0
-     /tmp/cc5BQ2Q4.s:158    .debug_info:0000000000000000 .Ldebug_info0
-     /tmp/cc5BQ2Q4.s:106    .gcc_except_table:0000000000000000 .LLSDA2
-     /tmp/cc5BQ2Q4.s:147    .gcc_except_table:0000000000000004 .LLSDA3
+     /tmp/ccIQTtek.s:111    .text:00000000000000ac .L0 
+     /tmp/ccIQTtek.s:116    .text:00000000000000bc .L0 
+     /tmp/ccIQTtek.s:130    .text:00000000000000d8 .L0 
+     /tmp/ccIQTtek.s:136    .text:00000000000000e0 .L0 
+     /tmp/ccIQTtek.s:176    .text:0000000000000114 .L0 
+     /tmp/ccIQTtek.s:183    .text:0000000000000120 .L0 
+     /tmp/ccIQTtek.s:185    .text:000000000000012c .L0 
+     /tmp/ccIQTtek.s:190    .text:000000000000013c .L0 
+     /tmp/ccIQTtek.s:204    .text:0000000000000158 .L0 
+     /tmp/ccIQTtek.s:210    .text:0000000000000160 .L0 
+     /tmp/ccIQTtek.s:258    .text:0000000000000194 .L0 
+     /tmp/ccIQTtek.s:265    .text:00000000000001a0 .L0 
+     /tmp/ccIQTtek.s:267    .text:00000000000001ac .L0 
+     /tmp/ccIQTtek.s:272    .text:00000000000001bc .L0 
+     /tmp/ccIQTtek.s:286    .text:00000000000001d8 .L0 
+     /tmp/ccIQTtek.s:292    .text:00000000000001e0 .L0 
+     /tmp/ccIQTtek.s:59     .text:0000000000000060 .L2
+     /tmp/ccIQTtek.s:131    .text:00000000000000e0 .L5
+     /tmp/ccIQTtek.s:205    .text:0000000000000160 .L8
+     /tmp/ccIQTtek.s:287    .text:00000000000001e0 .L11
+     /tmp/ccIQTtek.s:829    .debug_abbrev:0000000000000000 .Ldebug_abbrev0
+     /tmp/ccIQTtek.s:1512   .debug_str:0000000000000172 .LASF37
+     /tmp/ccIQTtek.s:1488   .debug_str:00000000000000ae .LASF38
+     /tmp/ccIQTtek.s:1514   .debug_str:0000000000000236 .LASF39
+     /tmp/ccIQTtek.s:5      .text:0000000000000000 .Ltext0
+     /tmp/ccIQTtek.s:330    .text:0000000000000200 .Letext0
+     /tmp/ccIQTtek.s:1464   .debug_line:0000000000000000 .Ldebug_line0
+     /tmp/ccIQTtek.s:1518   .debug_str:0000000000000274 .LASF0
+     /tmp/ccIQTtek.s:1508   .debug_str:0000000000000153 .LASF1
+     /tmp/ccIQTtek.s:1500   .debug_str:0000000000000128 .LASF2
+     /tmp/ccIQTtek.s:1480   .debug_str:000000000000004e .LASF4
+     /tmp/ccIQTtek.s:1506   .debug_str:0000000000000141 .LASF3
+     /tmp/ccIQTtek.s:1472   .debug_str:000000000000002d .LASF5
+     /tmp/ccIQTtek.s:1468   .debug_str:000000000000000a .LASF6
+     /tmp/ccIQTtek.s:1490   .debug_str:00000000000000bb .LASF7
+     /tmp/ccIQTtek.s:1522   .debug_str:0000000000000291 .LASF8
+     /tmp/ccIQTtek.s:1478   .debug_str:0000000000000040 .LASF9
+     /tmp/ccIQTtek.s:1566   .debug_str:0000000000000439 .LASF10
+     /tmp/ccIQTtek.s:1496   .debug_str:00000000000000f8 .LASF11
+     /tmp/ccIQTtek.s:1548   .debug_str:00000000000003bd .LASF12
+     /tmp/ccIQTtek.s:1530   .debug_str:00000000000002ed .LASF13
+     /tmp/ccIQTtek.s:1510   .debug_str:0000000000000166 .LASF14
+     /tmp/ccIQTtek.s:1484   .debug_str:0000000000000065 .LASF15
+     /tmp/ccIQTtek.s:1524   .debug_str:00000000000002a1 .LASF16
+     /tmp/ccIQTtek.s:1470   .debug_str:000000000000001d .LASF40
+     /tmp/ccIQTtek.s:1562   .debug_str:000000000000042c .LASF41
+     /tmp/ccIQTtek.s:1474   .debug_str:0000000000000034 .LASF17
+     /tmp/ccIQTtek.s:1560   .debug_str:0000000000000427 .LASF18
+     /tmp/ccIQTtek.s:1538   .debug_str:000000000000032c .LASF42
+     /tmp/ccIQTtek.s:1492   .debug_str:00000000000000ce .LASF43
+     /tmp/ccIQTtek.s:1556   .debug_str:000000000000040d .LASF19
+     /tmp/ccIQTtek.s:1544   .debug_str:0000000000000381 .LASF21
+     /tmp/ccIQTtek.s:1532   .debug_str:00000000000002fd .LASF20
+     /tmp/ccIQTtek.s:1498   .debug_str:0000000000000107 .LASF22
+     /tmp/ccIQTtek.s:1534   .debug_str:0000000000000306 .LASF23
+     /tmp/ccIQTtek.s:1528   .debug_str:00000000000002c2 .LASF24
+     /tmp/ccIQTtek.s:1546   .debug_str:00000000000003a2 .LASF25
+GAS LISTING /tmp/ccIQTtek.s 			page 12
+
+
+     /tmp/ccIQTtek.s:1542   .debug_str:000000000000034e .LASF26
+     /tmp/ccIQTtek.s:1466   .debug_str:0000000000000000 .LASF27
+     /tmp/ccIQTtek.s:1526   .debug_str:00000000000002b7 .LASF28
+     /tmp/ccIQTtek.s:1516   .debug_str:000000000000025b .LASF44
+     /tmp/ccIQTtek.s:1494   .debug_str:00000000000000ee .LASF45
+     /tmp/ccIQTtek.s:1552   .debug_str:00000000000003d4 .LASF46
+     /tmp/ccIQTtek.s:1536   .debug_str:0000000000000319 .LASF29
+     /tmp/ccIQTtek.s:1476   .debug_str:0000000000000039 .LASF30
+     /tmp/ccIQTtek.s:238    .text:0000000000000180 .LFB7
+     /tmp/ccIQTtek.s:306    .text:0000000000000200 .LFE7
+     /tmp/ccIQTtek.s:1343   .debug_loc:0000000000000000 .LLST6
+     /tmp/ccIQTtek.s:254    .text:0000000000000194 .LBB40
+     /tmp/ccIQTtek.s:290    .text:00000000000001e0 .LBE40
+     /tmp/ccIQTtek.s:261    .text:00000000000001a0 .LBB42
+     /tmp/ccIQTtek.s:283    .text:00000000000001d4 .LBE42
+     /tmp/ccIQTtek.s:1361   .debug_loc:000000000000004c .LLST7
+     /tmp/ccIQTtek.s:295    .text:00000000000001f0 .LVL19
+     /tmp/ccIQTtek.s:1520   .debug_str:0000000000000281 .LASF31
+     /tmp/ccIQTtek.s:1550   .debug_str:00000000000003cd .LASF32
+     /tmp/ccIQTtek.s:156    .text:0000000000000100 .LFB6
+     /tmp/ccIQTtek.s:224    .text:0000000000000180 .LFE6
+     /tmp/ccIQTtek.s:1370   .debug_loc:0000000000000078 .LLST4
+     /tmp/ccIQTtek.s:172    .text:0000000000000114 .LBB35
+     /tmp/ccIQTtek.s:208    .text:0000000000000160 .LBE35
+     /tmp/ccIQTtek.s:179    .text:0000000000000120 .LBB37
+     /tmp/ccIQTtek.s:201    .text:0000000000000154 .LBE37
+     /tmp/ccIQTtek.s:1388   .debug_loc:00000000000000c4 .LLST5
+     /tmp/ccIQTtek.s:213    .text:0000000000000170 .LVL14
+     /tmp/ccIQTtek.s:1558   .debug_str:0000000000000417 .LASF33
+     /tmp/ccIQTtek.s:1504   .debug_str:000000000000013b .LASF35
+     /tmp/ccIQTtek.s:84     .text:0000000000000080 .LFB5
+     /tmp/ccIQTtek.s:150    .text:0000000000000100 .LFE5
+     /tmp/ccIQTtek.s:1397   .debug_loc:00000000000000f0 .LLST2
+     /tmp/ccIQTtek.s:98     .text:0000000000000094 .LBB30
+     /tmp/ccIQTtek.s:134    .text:00000000000000e0 .LBE30
+     /tmp/ccIQTtek.s:105    .text:00000000000000a0 .LBB32
+     /tmp/ccIQTtek.s:127    .text:00000000000000d4 .LBE32
+     /tmp/ccIQTtek.s:1415   .debug_loc:000000000000013c .LLST3
+     /tmp/ccIQTtek.s:139    .text:00000000000000f0 .LVL9
+     /tmp/ccIQTtek.s:1554   .debug_str:0000000000000400 .LASF34
+     /tmp/ccIQTtek.s:1564   .debug_str:0000000000000433 .LASF36
+     /tmp/ccIQTtek.s:10     .text:0000000000000000 .LFB4
+     /tmp/ccIQTtek.s:78     .text:0000000000000080 .LFE4
+     /tmp/ccIQTtek.s:1424   .debug_loc:0000000000000168 .LLST0
+     /tmp/ccIQTtek.s:25     .text:0000000000000014 .LBB25
+     /tmp/ccIQTtek.s:62     .text:0000000000000060 .LBE25
+     /tmp/ccIQTtek.s:33     .text:0000000000000020 .LBB27
+     /tmp/ccIQTtek.s:55     .text:0000000000000054 .LBE27
+     /tmp/ccIQTtek.s:1442   .debug_loc:00000000000001b4 .LLST1
+     /tmp/ccIQTtek.s:67     .text:0000000000000070 .LVL4
+     /tmp/ccIQTtek.s:1502   .debug_str:0000000000000136 .LASF47
+     /tmp/ccIQTtek.s:1540   .debug_str:0000000000000335 .LASF48
+     /tmp/ccIQTtek.s:1482   .debug_str:0000000000000055 .LASF49
+     /tmp/ccIQTtek.s:1486   .debug_str:000000000000007b .LASF50
+     /tmp/ccIQTtek.s:243    .text:0000000000000180 .LVL15
+     /tmp/ccIQTtek.s:293    .text:00000000000001e8 .LVL18
+     /tmp/ccIQTtek.s:260    .text:00000000000001a0 .LVL16
+GAS LISTING /tmp/ccIQTtek.s 			page 13
+
+
+     /tmp/ccIQTtek.s:280    .text:00000000000001d4 .LVL17
+     /tmp/ccIQTtek.s:161    .text:0000000000000100 .LVL10
+     /tmp/ccIQTtek.s:211    .text:0000000000000168 .LVL13
+     /tmp/ccIQTtek.s:178    .text:0000000000000120 .LVL11
+     /tmp/ccIQTtek.s:198    .text:0000000000000154 .LVL12
+     /tmp/ccIQTtek.s:87     .text:0000000000000080 .LVL5
+     /tmp/ccIQTtek.s:137    .text:00000000000000e8 .LVL8
+     /tmp/ccIQTtek.s:104    .text:00000000000000a0 .LVL6
+     /tmp/ccIQTtek.s:124    .text:00000000000000d4 .LVL7
+     /tmp/ccIQTtek.s:14     .text:0000000000000000 .LVL0
+     /tmp/ccIQTtek.s:65     .text:0000000000000068 .LVL3
+     /tmp/ccIQTtek.s:32     .text:0000000000000020 .LVL1
+     /tmp/ccIQTtek.s:52     .text:0000000000000054 .LVL2
+     /tmp/ccIQTtek.s:333    .debug_info:0000000000000000 .Ldebug_info0
+     /tmp/ccIQTtek.s:227    .gcc_except_table:0000000000000000 .LLSDA6
+     /tmp/ccIQTtek.s:308    .gcc_except_table:0000000000000004 .LLSDA7
 
 UNDEFINED SYMBOLS
-__mem_alloc
-__mem_free
+HEAP_START_ADDR
+HEAP_END_ADDR
+_ZN15MemoryAllocator9mem_allocEm
+_ZN15MemoryAllocator8mem_freeEPv
 __gxx_personality_v0

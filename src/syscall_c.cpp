@@ -1,5 +1,6 @@
 #include "../h/syscall_c.hpp"
 #include "../h/MemoryAllocator.hpp"
+#include"../lib/console.h"
 
 void* mem_alloc(size_t size) {
     size += sizeof(MemoryAllocator::Header);
@@ -120,16 +121,9 @@ int time_sleep(time_t time) {
 }
 
 char getc() {
-    __asm__ volatile("li a0, 0x41");
-    __asm__ volatile ("ecall");
-
-    char result;
-    __asm__ volatile("mv %0, a0" : "=r" (result));
-    return result;
+    return __getc();
 }
 
 void putc(char c) {
-    __asm__ volatile ("mv a1, %0" : : "r" (c));
-    __asm__ volatile("li a0, 0x42");
-    __asm__ volatile ("ecall");
+    __putc(c);
 }

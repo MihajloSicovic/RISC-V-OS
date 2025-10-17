@@ -2,6 +2,8 @@
 #define syscall_c
 
 #include "../lib/hw.h"
+#include "Semaphore.hpp"
+#include "ccb.hpp"
 
 void* mem_alloc(size_t size);
 
@@ -11,8 +13,7 @@ size_t mem_get_free_space();
 
 size_t mem_get_largest_free_block();
 
-class _thread;
-typedef _thread* thread_t;
+typedef CCB* thread_t;
 
 int thread_create (
         thread_t* handle,
@@ -23,8 +24,7 @@ int thread_exit();
 
 void thread_dispatch();
 
-class _sem;
-typedef _sem* sem_t;
+typedef ABI::Semaphore* sem_t;
 
 int sem_open (
         sem_t* handle,
@@ -36,10 +36,8 @@ int sem_wait(sem_t id);
 
 int sem_signal(sem_t id);
 
-typedef unsigned long time_t;
-int time_sleep (time_t);
+int time_sleep(time_t time);
 
-const int EOF = -1;
 char getc();
 
 void putc(char c);

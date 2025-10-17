@@ -30,10 +30,21 @@ Thread::Thread(void (*body)(void *), void *arg) {
 }
 
 Thread::~Thread() {
-    //thread_exit();
     delete this->myHandle;
 }
 
 Thread::Thread() {
-    thread_create_without_start(&this->myHandle, runWrapper, this);
+    thread_create(&this->myHandle, runWrapper, this);
+}
+
+int Thread::sleep(time_t time) {
+    return time_sleep(time);
+}
+
+void Console::putc(char c) {
+    syscall_c::putc(c);
+}
+
+char Console::getc() {
+    return syscall_c::getc();
 }

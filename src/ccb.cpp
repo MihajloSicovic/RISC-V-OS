@@ -7,9 +7,9 @@
 
 CCB *CCB::running = nullptr;
 
-CCB *CCB::createCoroutine(Body body)
+CCB *CCB::createCoroutine(Body body, void* arg)
 {
-    return new CCB(body);
+    return new CCB(body, arg);
 }
 
 void CCB::yield()

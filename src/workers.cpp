@@ -14,7 +14,7 @@ static uint64 fibonacci(uint64 n)
     return fibonacci(n - 1) + fibonacci(n - 2);
 }
 
-void workerBodyA()
+void workerBodyA(void*)
 {
     uint8 i = 0;
     for (; i < 3; i++)
@@ -51,7 +51,7 @@ void workerBodyA()
     CCB::yield();
 }
 
-void workerBodyB()
+void workerBodyB(void*)
 {
     uint8 i = 10;
     for (; i < 13; i++)
@@ -83,7 +83,7 @@ void workerBodyB()
 
 static int a = 0;
 
-void workerBodyC() {
+void workerBodyC(void*) {
     for (int i = 0; i < 10; i++) {
         a += 1000;
         printInteger(a);
@@ -94,7 +94,7 @@ void workerBodyC() {
     CCB::yield();
 }
 
-void workerBodyD() {
+void workerBodyD(void*) {
     for (int i = 0; i < 10; i++) {
         a -= 1000;
         printInteger(a);

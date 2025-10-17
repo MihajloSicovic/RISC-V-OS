@@ -9,41 +9,49 @@
 #include "ccb.hpp"
 #include "MemoryAllocator.hpp"
 
-class Semaphore {
-public:
-    virtual ~Semaphore() = default;
+namespace ABI {
+    class Semaphore {
+    public:
+        virtual ~Semaphore() = default;
 
-    static Semaphore* createSemaphore(unsigned int init = 1);
-    int wait();
-    int signal();
-    int close();
+        static Semaphore *createSemaphore(unsigned int init = 1);
 
-    unsigned int getValue() const { return val; }
+        int wait();
 
-    void* operator new(size_t size) {
-        return MemoryAllocator::Instance()->mem_alloc(size);
-    }
-    void* operator new[](size_t size) {
-        return MemoryAllocator::Instance()->mem_alloc(size);
-    }
+        int signal();
 
-    void operator delete(void *ptr) {
-        MemoryAllocator::Instance()->mem_free(ptr);
-    }
-    void operator delete[](void *ptr) {
-        MemoryAllocator::Instance()->mem_free(ptr);
-    }
+        int close();
 
-protected:
-    explicit Semaphore(unsigned int init = 1) : val(init), closed(false) {}
+        unsigned int getValue() const { return val; }
 
-    void block();
-    void unblock();
+        void *operator new(size_t size) {
+            return MemoryAllocator::Instance()->mem_alloc(size);
+        }
 
-private:
-    unsigned int val;
-    bool closed;
-    List<CCB> blocked;
-};
+        void *operator new[](size_t size) {
+            return MemoryAllocator::Instance()->mem_alloc(size);
+        }
+
+        void operator delete(void *ptr) {
+            MemoryAllocator::Instance()->mem_free(ptr);
+        }
+
+        void operator delete[](void *ptr) {
+            MemoryAllocator::Instance()->mem_free(ptr);
+        }
+
+    protected:
+        explicit Semaphore(unsigned int init = 1) : val(init), closed(false) {}
+
+        void block();
+
+        void unblock();
+
+    private:
+        unsigned int val;
+        bool closed;
+        List<CCB> blocked;
+    };
+}
 
 #endif //PROJECT_BASE_V1_1_SEMAPHORE_H

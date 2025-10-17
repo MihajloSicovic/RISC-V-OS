@@ -3,8 +3,8 @@
 
 #include "syscall_c.hpp"
 
-void* ::operator new (size_t);
-void  ::operator delete (void*);
+void* operator new (size_t);
+void operator delete (void*) noexcept;
 
 class Thread {
 public:
@@ -22,6 +22,12 @@ private:
     thread_t myHandle;
     void (*body)(void*);
     void* arg;
+
+    static void runWrapper(void* thread) {
+        if (thread) {
+            ((Thread*)thread)->run();
+        }
+    }
 };
 
 class Semaphore {
@@ -35,22 +41,11 @@ private:
     sem_t myHandle;
 };
 
-class PeriodicThread : public Thread {
-public:
-    void terminate ();
-
-protected:
-    PeriodicThread (time_t period);
-    virtual void periodicActivation () {}
-
-private:
-    time_t period;
-};
-
 class Console {
 public:
-    static char getc ();
-    static void putc (char);
+    static void putc(char c);
+    static char getc();
 };
+
 
 #endif

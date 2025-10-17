@@ -18,12 +18,12 @@ int main()
     CCB *coroutines[3];
 
     m->mem_free(res);
-    coroutines[0] = CCB::createCoroutine(nullptr);
+    coroutines[0] = CCB::createCoroutine(nullptr, nullptr);
     CCB::running = coroutines[0];
 
-    coroutines[1] = CCB::createCoroutine(workerBodyC);
+    coroutines[1] = CCB::createCoroutine(workerBodyC, nullptr);
     printString("CoroutineC created\n");
-    coroutines[2] = CCB::createCoroutine(workerBodyD);
+    coroutines[2] = CCB::createCoroutine(workerBodyD, nullptr);
     printString("CoroutineD created\n");
 
     while (!(coroutines[1]->isFinished() &&

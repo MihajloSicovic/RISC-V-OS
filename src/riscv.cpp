@@ -5,7 +5,7 @@
 #include "../h/riscv.hpp"
 #include "../h/ccb.hpp"
 #include "../lib/console.h"
-#include "../h/print.hpp"
+#include "../test/printing.hpp"
 
 void Riscv::popSppSpie()
 {
@@ -17,9 +17,10 @@ using Body = void (*)(void*);
 
 void Riscv::handleSyscalls() {
     uint64 scause = r_scause();
+
     if (scause != 8 && scause != 9) {
         printString("ERROR! SCAUSE: ");
-        printInteger(scause);
+        printInt(scause);
         printString("\n");
         return;
     }
@@ -154,6 +155,20 @@ void Riscv::handleSyscalls() {
 
             __asm__ volatile ("mv t0, %0" : : "r"(returnValue));
             __asm__ volatile ("sw t0, 80(x8)");
+            break;
+
+        case 0x41:
+            //getc
+            returnValue = __getc();
+            __asm__ volatile ("mv t0, %0" : : "r"(returnValue));
+            __asm__ volatile ("sw t0, 80(x8)");
+            break;
+
+        case 0x42:
+            //putc
+            char c;
+            __asm__ volatile ("mv %0, a1" : "=r" (c));
+            __putc(c);
             break;
     }
 

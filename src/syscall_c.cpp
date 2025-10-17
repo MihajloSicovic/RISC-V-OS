@@ -1,6 +1,7 @@
 #include "../h/syscall_c.hpp"
 #include "../h/MemoryAllocator.hpp"
 #include"../lib/console.h"
+#include "../h/ccb.hpp"
 
 void* mem_alloc(size_t size) {
     size += sizeof(MemoryAllocator::Header);
@@ -53,6 +54,12 @@ int thread_create(thread_t* handle, void (*start_routine)(void*), void* arg) {
     int result;
     __asm__ volatile("mv %0, a0" : "=r" (result));
     return result;
+}
+
+int thread_start(thread_t* handle) {
+    if (!handle) return -1;
+    CCB::startThread(*handle);
+    return 0;
 }
 
 int thread_exit() {
@@ -121,9 +128,16 @@ int time_sleep(time_t time) {
 }
 
 char getc() {
-    return __getc();
+    __asm__ volatile("li a0, 0x41");
+    __asm__ volatile ("ecall");
+
+    char result;
+    __asm__ volatile("mv %0, a0" : "=r"(result));
+    return result;
 }
 
 void putc(char c) {
-    __putc(c);
+    __asm__ volatile ("mv a1, %0" : : "r" (c));
+    __asm__ volatile("li a0, 0x42");
+    __asm__ volatile ("ecall");
 }

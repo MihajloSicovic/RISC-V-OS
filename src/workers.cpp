@@ -4,8 +4,8 @@
 
 #include "../lib/hw.h"
 #include "../h/ccb.hpp"
-#include "../h/print.hpp"
 #include "../h/Semaphore.hpp"
+#include "../test/printing.hpp"
 
 static uint64 fibonacci(uint64 n)
 {
@@ -20,7 +20,7 @@ void workerBodyA(void*)
     for (; i < 3; i++)
     {
         printString("A: i=");
-        printInteger(i);
+        printInt(i);
         printString("\n");
     }
 
@@ -32,18 +32,18 @@ void workerBodyA(void*)
     __asm__ ("mv %[t1], t1" : [t1] "=r"(t1));
 
     printString("A: t1=");
-    printInteger(t1);
+    printInt(t1);
     printString("\n");
 
     uint64 result = fibonacci(20);
     printString("A: fibonaci=");
-    printInteger(result);
+    printInt(result);
     printString("\n");
 
     for (; i < 6; i++)
     {
         printString("A: i=");
-        printInteger(i);
+        printInt(i);
         printString("\n");
     }
 
@@ -57,7 +57,7 @@ void workerBodyB(void*)
     for (; i < 13; i++)
     {
         printString("B: i=");
-        printInteger(i);
+        printInt(i);
         printString("\n");
     }
 
@@ -67,13 +67,13 @@ void workerBodyB(void*)
 
     uint64 result = fibonacci(23);
     printString("A: fibonaci=");
-    printInteger(result);
+    printInt(result);
     printString("\n");
 
     for (; i < 16; i++)
     {
         printString("B: i=");
-        printInteger(i);
+        printInt(i);
         printString("\n");
     }
 
@@ -86,7 +86,7 @@ static int a = 0;
 void workerBodyC(void*) {
     for (int i = 0; i < 10; i++) {
         a += 1000;
-        printInteger(a);
+        printInt(a);
         printString("\n");
         CCB::yield();
     }
@@ -97,7 +97,7 @@ void workerBodyC(void*) {
 void workerBodyD(void*) {
     for (int i = 0; i < 10; i++) {
         a -= 1000;
-        printInteger(a);
+        printInt(a);
         printString("\n");
         CCB::yield();
     }

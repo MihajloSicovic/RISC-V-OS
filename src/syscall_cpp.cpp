@@ -37,6 +37,10 @@ Thread::Thread() {
     thread_create(&this->myHandle, runWrapper, this);
 }
 
+int Thread::start() {
+    return thread_start(&this->myHandle);
+}
+
 int Thread::sleep(time_t time) {
     return time_sleep(time);
 }

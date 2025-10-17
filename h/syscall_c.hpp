@@ -20,6 +20,8 @@ int thread_create (
         void(*start_routine)(void*),
         void* arg);
 
+int thread_start(thread_t* handle);
+
 int thread_exit();
 
 void thread_dispatch();

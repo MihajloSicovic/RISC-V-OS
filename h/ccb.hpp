@@ -28,6 +28,10 @@ public:
 
     static CCB *running;
 
+    static void startThread(CCB* tcbToStart) {
+        Scheduler::put(tcbToStart);
+    }
+
     void* operator new(size_t size) {
         return MemoryAllocator::Instance()->mem_alloc(size);
     }

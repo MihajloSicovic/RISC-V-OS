@@ -7,8 +7,8 @@ void* mem_alloc(size_t size) {
     size += sizeof(MemoryAllocator::Header);
     size_t paddedSize = size - (size % MEM_BLOCK_SIZE) + (size % MEM_BLOCK_SIZE ? MEM_BLOCK_SIZE : 0);
 
-    __asm__ volatile("li a0, 0x01");
     __asm__ volatile("mv a1, %0" : : "r" (paddedSize));
+    __asm__ volatile("li a0, 0x01");
     __asm__ volatile("ecall");
 
     void* result;
@@ -17,8 +17,8 @@ void* mem_alloc(size_t size) {
 }
 
 int mem_free(void* p) {
-    __asm__ volatile("li a0, 0x02");
     __asm__ volatile("mv a1, %0" : : "r" (p));
+    __asm__ volatile("li a0, 0x02");
     __asm__ volatile("ecall");
 
     int result;
@@ -45,10 +45,12 @@ size_t mem_get_largest_free_block() {
 }
 
 int thread_create(thread_t* handle, void (*start_routine)(void*), void* arg) {
+    void* sp = MemoryAllocator::Instance()->mem_alloc(DEFAULT_STACK_SIZE * sizeof(uint64));
+    __asm__ volatile ("mv a6, %0" : : "r"((uint64)sp));
+    __asm__ volatile ("mv a7, %0" : : "r"((uint64)arg));
+    __asm__ volatile ("mv a2, %0" : : "r"((uint64)start_routine));
+    __asm__ volatile ("mv a1, %0" : : "r"((uint64)handle));
     __asm__ volatile("li a0, 0x11");
-    __asm__ volatile("mv a1, %0" : : "r" (handle));
-    __asm__ volatile("mv a2, %0" : : "r" (start_routine));
-    __asm__ volatile("mv a3, %0" : : "r" (arg));
     __asm__ volatile("ecall");
 
     int result;
@@ -77,9 +79,9 @@ void thread_dispatch() {
 }
 
 int sem_open(sem_t* handle, unsigned init) {
+    __asm__ volatile ("mv a2, %0" : : "r" ((uint64)init));
+    __asm__ volatile ("mv a1, %0" : : "r" ((uint64)handle));
     __asm__ volatile("li a0, 0x21");
-    __asm__ volatile ("mv a1, %0" : : "r" (handle));
-    __asm__ volatile ("mv a2, %0" : : "r" (init));
     __asm__ volatile ("ecall");
 
     int result;
@@ -88,8 +90,8 @@ int sem_open(sem_t* handle, unsigned init) {
 }
 
 int sem_close(sem_t handle) {
-    __asm__ volatile("li a0, 0x22");
     __asm__ volatile ("mv a1, %0" : : "r" (handle));
+    __asm__ volatile("li a0, 0x22");
     __asm__ volatile ("ecall");
 
     int result;
@@ -98,8 +100,8 @@ int sem_close(sem_t handle) {
 }
 
 int sem_wait(sem_t id) {
-    __asm__ volatile("li a0, 0x23");
     __asm__ volatile ("mv a1, %0" : : "r" (id));
+    __asm__ volatile("li a0, 0x23");
     __asm__ volatile ("ecall");
 
     int result;
@@ -108,8 +110,8 @@ int sem_wait(sem_t id) {
 }
 
 int sem_signal(sem_t id) {
-    __asm__ volatile("li a0, 0x24");
     __asm__ volatile ("mv a1, %0" : : "r" (id));
+    __asm__ volatile("li a0, 0x24");
     __asm__ volatile ("ecall");
 
     int result;
@@ -118,8 +120,8 @@ int sem_signal(sem_t id) {
 }
 
 int time_sleep(time_t time) {
-    __asm__ volatile("li a0, 0x31");
     __asm__ volatile ("mv a1, %0" : : "r" (time));
+    __asm__ volatile("li a0, 0x31");
     __asm__ volatile ("ecall");
 
     int result;

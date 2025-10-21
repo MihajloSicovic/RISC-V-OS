@@ -10,7 +10,7 @@
 static uint64 fibonacci(uint64 n)
 {
     if (n == 0 || n == 1) { return n; }
-    if (n % 4 == 0) CCB::yield();
+    if (n % 4 == 0) thread_dispatch();
     return fibonacci(n - 1) + fibonacci(n - 2);
 }
 
@@ -26,7 +26,7 @@ void workerBodyA(void*)
 
     printString("A: yield\n");
     __asm__ ("li t1, 7");
-    CCB::yield();
+    thread_dispatch();
 
     uint64 t1 = 0;
     __asm__ ("mv %[t1], t1" : [t1] "=r"(t1));
@@ -48,7 +48,7 @@ void workerBodyA(void*)
     }
 
     CCB::running->setFinished(true);
-    CCB::yield();
+    thread_dispatch();
 }
 
 void workerBodyB(void*)
@@ -63,7 +63,7 @@ void workerBodyB(void*)
 
     printString("B: yield\n");
     __asm__ ("li t1, 5");
-    CCB::yield();
+    thread_dispatch();
 
     uint64 result = fibonacci(23);
     printString("A: fibonaci=");
@@ -78,7 +78,7 @@ void workerBodyB(void*)
     }
 
     CCB::running->setFinished(true);
-    CCB::yield();
+    thread_dispatch();
 }
 
 static int a = 0;
@@ -88,10 +88,10 @@ void workerBodyC(void*) {
         a += 1000;
         printInt(a);
         printString("\n");
-        CCB::yield();
+        thread_dispatch();
     }
     CCB::running->setFinished(true);
-    CCB::yield();
+    thread_dispatch();
 }
 
 void workerBodyD(void*) {
@@ -99,8 +99,8 @@ void workerBodyD(void*) {
         a -= 1000;
         printInt(a);
         printString("\n");
-        CCB::yield();
+        thread_dispatch();
     }
     CCB::running->setFinished(true);
-    CCB::yield();
+    thread_dispatch();
 }

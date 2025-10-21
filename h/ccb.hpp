@@ -20,9 +20,9 @@ public:
 
     void setFinished(bool value) { finished = value; }
 
-    using Body = void (*)(void*);
+    using Body = void (*)();
 
-    static CCB *createCoroutine(Body body, void* arg);
+    static CCB *createCoroutine(Body body, void* arg, uint64* stack);
 
     static void yield();
 
@@ -49,10 +49,10 @@ public:
     static void dispatch();
 
 private:
-    explicit CCB(Body body, void* arg) :
+    explicit CCB(Body body, void* arg, uint64* stack) :
             body(body),
-            stack(body != nullptr ? new uint64[STACK_SIZE] : nullptr),
-            context({body != nullptr ? (uint64) body : 0,
+            stack(stack == nullptr ? new uint64[STACK_SIZE] : stack),
+            context({(uint64)&threadWrapper,
                      stack != nullptr ? (uint64) &stack[STACK_SIZE] : 0
                     }),
             finished(false),
@@ -60,6 +60,8 @@ private:
     {
         if (body != nullptr) { Scheduler::put(this); }
     }
+
+    static void threadWrapper();
 
     struct Context
     {

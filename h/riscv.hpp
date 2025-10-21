@@ -84,6 +84,8 @@ public:
 
     static void handleSyscalls();
 
+    static void handleConsole();
+
     static void stvecTrap();
 
     //read a0 register

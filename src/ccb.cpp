@@ -7,9 +7,17 @@
 
 CCB *CCB::running = nullptr;
 
-CCB *CCB::createCoroutine(Body body, void* arg)
+CCB *CCB::createCoroutine(Body body, void* arg, uint64* stack)
 {
-    return new CCB(body, arg);
+    return new CCB(body, arg, stack);
+}
+
+void CCB::threadWrapper()
+{
+    Riscv::popSppSpie();
+    running->body();
+    running->setFinished(true);
+    CCB::yield();
 }
 
 void CCB::yield()

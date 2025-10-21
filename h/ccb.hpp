@@ -20,7 +20,7 @@ public:
 
     void setFinished(bool value) { finished = value; }
 
-    using Body = void (*)();
+    using Body = void (*)(void*);
 
     static CCB *createCoroutine(Body body, void* arg, uint64* stack);
 

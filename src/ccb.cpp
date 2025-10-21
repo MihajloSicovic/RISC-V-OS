@@ -15,7 +15,7 @@ CCB *CCB::createCoroutine(Body body, void* arg, uint64* stack)
 void CCB::threadWrapper()
 {
     Riscv::popSppSpie();
-    running->body();
+    running->body(running->arg);
     running->setFinished(true);
     CCB::yield();
 }

@@ -17,9 +17,8 @@ Thread::~Thread() {
     delete myHandle;
 }
 
-Thread::Thread() {
-    thread_create(&myHandle, runWrapper, this);
-}
+Thread::Thread() :
+        myHandle(nullptr), body(runWrapper), arg(this) {}
 
 int Thread::start() {
     return thread_create(&myHandle, body, arg);

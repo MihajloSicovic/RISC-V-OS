@@ -20,6 +20,7 @@ using Body = void (*)(void*);
 
 void Riscv::handleSyscalls() {
     uint64 scause = r_scause();
+    uint64 codeOperation = Riscv::r_a0();
 
     if (scause == CONSOLE_INTERRUPT) {
         console_handler();
@@ -41,7 +42,6 @@ void Riscv::handleSyscalls() {
     uint64 volatile sepc = r_sepc() + 4;
     uint64 volatile sstatus = r_sstatus();
 
-    uint64 codeOperation = Riscv::r_a0();
     int returnValue;
     ABI::Semaphore *semHandlePtr;
     switch (codeOperation) {
@@ -93,7 +93,7 @@ void Riscv::handleSyscalls() {
             __asm__ volatile ("mv %0, a2" : "=r" (body));
             __asm__ volatile ("mv %0, a6" : "=r" (stack));
             __asm__ volatile ("mv %0, a7" : "=r" (arg));
-            *thread = CCB::createCoroutine((void (*)())body, arg, stack);
+            *thread = CCB::createCoroutine(body, arg, stack);
             if (*thread != nullptr) {
                 __asm__ volatile ("li a0, 0");
             } else {

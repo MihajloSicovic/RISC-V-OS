@@ -53,7 +53,8 @@ void Riscv::handleSyscalls() {
             __asm__ volatile("mv %0, a1" : "=r" (size));
             ptr = MemoryAllocator::Instance()->mem_alloc(size * MEM_BLOCK_SIZE);
 
-            __asm__ volatile("mv a0, %0" : : "r"(ptr));
+            __asm__ volatile ("mv t0, %0" : : "r"(ptr));
+            __asm__ volatile ("sw t0, 80(x8)");
             break;
 
         case 0x02:
@@ -64,7 +65,8 @@ void Riscv::handleSyscalls() {
 
             returnValue = MemoryAllocator::Instance()->mem_free(memptr);
 
-            __asm__ volatile("mv a0, %0" : : "r"(returnValue));
+            __asm__ volatile ("mv t0, %0" : : "r"(returnValue));
+            __asm__ volatile ("sw t0, 80(x8)");
             break;
 
         case 0x03:
@@ -72,7 +74,8 @@ void Riscv::handleSyscalls() {
 
             returnValue = MemoryAllocator::Instance()->mem_get_free_space();
 
-            __asm__ volatile("mv a0, %0" : : "r"(returnValue));
+            __asm__ volatile ("mv t0, %0" : : "r"(returnValue));
+            __asm__ volatile ("sw t0, 80(x8)");
             break;
 
         case 0x04:
@@ -80,7 +83,8 @@ void Riscv::handleSyscalls() {
 
             returnValue = MemoryAllocator::Instance()->mem_get_largest_free_block();
 
-            __asm__ volatile("mv a0, %0" : : "r"(returnValue));
+            __asm__ volatile ("mv t0, %0" : : "r"(returnValue));
+            __asm__ volatile ("sw t0, 80(x8)");
             break;
 
         case 0x11:
@@ -136,7 +140,8 @@ void Riscv::handleSyscalls() {
                 returnValue = semHandlePtr->close();
             } else returnValue = -2;
 
-            __asm__ volatile ("mv a0, %0" : : "r"(returnValue));
+            __asm__ volatile ("mv t0, %0" : : "r"(returnValue));
+            __asm__ volatile ("sw t0, 80(x8)");
             break;
 
         case 0x23:
@@ -146,7 +151,8 @@ void Riscv::handleSyscalls() {
                 returnValue = semHandlePtr->wait();
             } else returnValue = -2;
 
-            __asm__ volatile ("mv a0, %0" : : "r"(returnValue));
+            __asm__ volatile ("mv t0, %0" : : "r"(returnValue));
+            __asm__ volatile ("sw t0, 80(x8)");
             break;
 
         case 0x24:
@@ -157,7 +163,8 @@ void Riscv::handleSyscalls() {
             else
                 returnValue = -2;
 
-            __asm__ volatile ("mv a0, %0" : : "r"(returnValue));
+            __asm__ volatile ("mv t0, %0" : : "r"(returnValue));
+            __asm__ volatile ("sw t0, 80(x8)");
             break;
 
         case 0x41:

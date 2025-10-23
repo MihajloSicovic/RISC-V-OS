@@ -4,6 +4,7 @@
 
 #include "../h/Semaphore.hpp"
 #include "../h/ccb.hpp"
+#include "../h/syscall_c.hpp"
 
 namespace ABI {
     Semaphore *Semaphore::createSemaphore(unsigned int init) {
@@ -13,21 +14,16 @@ namespace ABI {
     int Semaphore::wait() {
         if (closed) return -1;
 
-        if (--val < 0) {
-            blocked.addLast(CCB::running);
-            CCB::running = Scheduler::get();
-            CCB::dispatch();
-        }
+        if (--val < 0) block();
+
         return 0;
     }
 
     int Semaphore::signal() {
         if (closed) return -1;
 
-        if (++val <= 0) {
-            CCB *thread = blocked.removeFirst();
-            Scheduler::put(thread);
-        }
+        if (++val <= 0) unblock();
+
         return 0;
     }
 
@@ -43,12 +39,13 @@ namespace ABI {
 
     void Semaphore::block() {
         blocked.addLast(CCB::running);
-        CCB::running = Scheduler::get();
-        CCB::dispatch();
+        CCB::running->setBlocked(true);
+        CCB::yield();
     }
 
     void Semaphore::unblock() {
         CCB *thread = blocked.removeFirst();
+        thread->setBlocked(false);
         Scheduler::put(thread);
     }
 }

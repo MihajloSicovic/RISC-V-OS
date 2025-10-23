@@ -4,6 +4,7 @@
 
 #include "../h/ccb.hpp"
 #include "../h/riscv.hpp"
+#include "../h/syscall_c.hpp"
 
 CCB *CCB::running = nullptr;
 
@@ -22,18 +23,28 @@ void CCB::threadWrapper()
 
 void CCB::yield()
 {
+    /*
     Riscv::pushRegisters();
 
     CCB::dispatch();
 
     Riscv::popRegisters();
+     */
+    thread_dispatch();
 }
 
 void CCB::dispatch()
 {
     CCB *old = running;
-    if (!old->isFinished()) { Scheduler::put(old); }
+    if (!old->isFinished() && !old->isBlocked()) { Scheduler::put(old); }
     running = Scheduler::get();
+
+    if(running->body == nullptr) {
+        Riscv::ms_sstatus(Riscv::SSTATUS_SPP);
+    }
+    else {
+        Riscv::mc_sstatus(Riscv::SSTATUS_SPP);
+    }
 
     CCB::contextSwitch(&old->context, &running->context);
 }

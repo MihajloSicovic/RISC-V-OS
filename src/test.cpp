@@ -29,6 +29,7 @@ int main()
     }
 
     printString("Vratio sam se u main\n");
+    Riscv::mc_sstatus(Riscv::SSTATUS_SIE);
 
     return 0;
 }

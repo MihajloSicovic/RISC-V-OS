@@ -18,7 +18,7 @@ static void producerKeyboard(void *arg) {
 
     int key;
     int i = 0;
-    while ((key = getc()) != 0x1b) {
+    while ((key = getc()) != 'e') {
         data->buffer->put(key);
         i++;
 
@@ -133,5 +133,4 @@ void producerConsumer_C_API() {
     sem_close(waitForAll);
 
     delete buffer;
-
 }

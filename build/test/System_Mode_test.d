@@ -1,7 +1,7 @@
 build/test/System_Mode_test.o: test/System_Mode_test.cpp \
  test/../h/syscall_c.hpp test/../h/../lib/hw.h test/../h/Semaphore.hpp \
  test/../h/list.hpp test/../h/ccb.hpp test/../h/scheduler.hpp \
- test/../h/MemoryAllocator.hpp test/printing.hpp
+ test/../h/MemoryAllocator.hpp test/printing.hpp test/../h/riscv.hpp
 
 test/../h/syscall_c.hpp:
 
@@ -18,3 +18,5 @@ test/../h/scheduler.hpp:
 test/../h/MemoryAllocator.hpp:
 
 test/printing.hpp:
+
+test/../h/riscv.hpp:

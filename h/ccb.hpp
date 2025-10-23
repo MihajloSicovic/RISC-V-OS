@@ -20,6 +20,10 @@ public:
 
     void setFinished(bool value) { finished = value; }
 
+    bool isBlocked() const { return blocked; }
+
+    void setBlocked(bool value) { blocked = value; }
+
     using Body = void (*)(void*);
 
     static CCB *createCoroutine(Body body, void* arg, uint64* stack);
@@ -56,6 +60,7 @@ private:
                      stack != nullptr ? (uint64) &stack[STACK_SIZE] : 0
                     }),
             finished(false),
+            blocked(false),
             arg(arg)
     {
         if (body != nullptr) { Scheduler::put(this); }
@@ -72,7 +77,7 @@ private:
     Body body;
     uint64 *stack;
     Context context;
-    bool finished;
+    bool finished, blocked;
     void *arg;
 
     static void contextSwitch(Context *oldContext, Context *runningContext);

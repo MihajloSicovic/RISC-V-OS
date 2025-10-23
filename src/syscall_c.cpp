@@ -4,8 +4,7 @@
 #include "../h/ccb.hpp"
 
 void* mem_alloc(size_t size) {
-    size += sizeof(MemoryAllocator::Header);
-    size_t paddedSize = size - (size % MEM_BLOCK_SIZE) + (size % MEM_BLOCK_SIZE ? MEM_BLOCK_SIZE : 0);
+    size_t paddedSize = size / MEM_BLOCK_SIZE + (size % MEM_BLOCK_SIZE ? 1 : 0);
 
     __asm__ volatile("mv a1, %0" : : "r" (paddedSize));
     __asm__ volatile("li a0, 0x01");

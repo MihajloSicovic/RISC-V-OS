@@ -48,7 +48,7 @@ namespace ABI {
         void unblock();
 
     private:
-        unsigned int val;
+        long val;
         bool closed;
         List<CCB> blocked;
     };

@@ -38,3 +38,9 @@ void TCB::dispatch()
 
     TCB::contextSwitch(&old->context, &running->context);
 }
+
+int TCB::exit() {
+    running->setFinished(true);
+    dispatch();
+    return 0;
+}

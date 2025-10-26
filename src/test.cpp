@@ -15,7 +15,7 @@ int main()
 {
     TCB *mainThread, *userMainThread;
 
-    Riscv::w_stvec((uint64) &Riscv::stvecTrap);
+    Riscv::w_stvec((uint64)&Riscv::stvecTrap);
     Riscv::ms_sstatus(Riscv::SSTATUS_SIE);
 
     mainThread = TCB::createThread(nullptr, nullptr, nullptr);

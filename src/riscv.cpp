@@ -68,10 +68,7 @@ void Riscv::handleSyscalls() {
             __asm__ volatile("mv %0, a1" : "=r" (memPtr));
 
             returnValue = MemoryAllocator::Instance()->mem_free(memPtr);
-
-            __asm__ volatile ("mv t0, %0" : : "r" (returnValue));
-            __asm__ volatile ("sw t0, 80(x8)");
-            break;
+            goto stRetVal;
 
         case 0x03:
             // mem_get_free_space()
@@ -93,30 +90,22 @@ void Riscv::handleSyscalls() {
             // thread_create (thread_t* handle, void(*start_routine)(void*), void* arg)
             TCB **thread;
             Body body;
-            void *arg;
             uint64 *stack;
+            void *arg;
             __asm__ volatile ("mv %0, a1" : "=r" (thread));
             __asm__ volatile ("mv %0, a2" : "=r" (body));
             __asm__ volatile ("mv %0, a6" : "=r" (stack));
             __asm__ volatile ("mv %0, a7" : "=r" (arg));
             *thread = TCB::createThread(body, arg, stack);
 
-            if (*thread != nullptr) {
-                __asm__ volatile ("li t0, 0");
-                __asm__ volatile ("sw t0, 80(x8)");
-            }
-            else {
-                __asm__ volatile ("li t0, -1");
-                __asm__ volatile ("sw t0, 80(x8)");
-            }
-            break;
+            if (*thread != nullptr) returnValue = 0;
+            else returnValue = -1;
+            goto stRetVal;
 
         case 0x12:
             // thread_exit()
-            TCB::running->setFinished(true);
-            TCB::dispatch();
-            __asm__ volatile ("li a0, 0");
-            break;
+            returnValue = TCB::exit();
+            goto stRetVal;
 
         case 0x13:
             // thread_dispatch()
@@ -132,35 +121,25 @@ void Riscv::handleSyscalls() {
             __asm__ volatile ("mv %0, a2" : "=r" (init));
             *semHandle = ABI::Semaphore::createSemaphore(init);
 
-            if (*semHandle != nullptr) {
-                __asm__ volatile ("li t0, 0");
-                __asm__ volatile ("sw t0, 80(x8)");
-            }
-            else {
-                __asm__ volatile ("li t0, -1");
-                __asm__ volatile ("sw t0, 80(x8)");
-            }
-            break;
+            if (*semHandle != nullptr) returnValue = 0;
+            else returnValue = -1;
+            goto stRetVal;
 
         case 0x22:
             // sem_close (sem_t handle)
             __asm__ volatile ("mv %0, a1" : "=r" (semHandlePtr));
+
             if (semHandlePtr) returnValue = semHandlePtr->close();
             else returnValue = -2;
-
-            __asm__ volatile ("mv t0, %0" : : "r" (returnValue));
-            __asm__ volatile ("sw t0, 80(x8)");
-            break;
+            goto stRetVal;
 
         case 0x23:
             // sem_wait (sem_t id)
             __asm__ volatile ("mv %0, a1" : "=r" (semHandlePtr));
+
             if (semHandlePtr) returnValue = semHandlePtr->wait();
             else returnValue = -2;
-
-            __asm__ volatile ("mv t0, %0" : : "r" (returnValue));
-            __asm__ volatile ("sw t0, 80(x8)");
-            break;
+            goto stRetVal;
 
         case 0x24:
             // sem_signal (sem_t id)
@@ -168,16 +147,12 @@ void Riscv::handleSyscalls() {
             if (semHandlePtr) returnValue = semHandlePtr->signal();
             else returnValue = -2;
 
-            __asm__ volatile ("mv t0, %0" : : "r" (returnValue));
-            __asm__ volatile ("sw t0, 80(x8)");
-            break;
+            goto stRetVal;
 
         case 0x41:
             // getc()
             returnValue = __getc();
-            __asm__ volatile ("mv t0, %0" : : "r" (returnValue));
-            __asm__ volatile ("sw t0, 80(x8)");
-            break;
+            goto stRetVal;
 
         case 0x42:
             // putc(char)
@@ -187,6 +162,13 @@ void Riscv::handleSyscalls() {
             break;
     }
 
+    ret:
     w_sstatus(sstatus);
     w_sepc(sepc);
+    return;
+
+    stRetVal:
+    __asm__ volatile ("mv t0, %0" : : "r" (returnValue));
+    __asm__ volatile ("sw t0, 80(x8)");
+    goto ret;
 }

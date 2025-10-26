@@ -90,6 +90,8 @@ private:
 
     static void dispatch();
 
+    static int exit();
+
     friend class Riscv;
 
     static uint64 constexpr STACK_SIZE = 1024;

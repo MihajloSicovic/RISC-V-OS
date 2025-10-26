@@ -2,8 +2,6 @@
 #define syscall_c
 
 #include "../lib/hw.h"
-#include "Semaphore.hpp"
-#include "ccb.hpp"
 
 void* mem_alloc(size_t size);
 
@@ -13,7 +11,8 @@ size_t mem_get_free_space();
 
 size_t mem_get_largest_free_block();
 
-typedef CCB* thread_t;
+class TCB;
+typedef TCB* thread_t;
 
 int thread_create (
         thread_t* handle,
@@ -26,6 +25,7 @@ int thread_exit();
 
 void thread_dispatch();
 
+namespace ABI { class Semaphore; }
 typedef ABI::Semaphore* sem_t;
 
 int sem_open (

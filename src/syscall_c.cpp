@@ -1,7 +1,5 @@
 #include "../h/syscall_c.hpp"
 #include "../h/MemoryAllocator.hpp"
-#include"../lib/console.h"
-#include "../h/ccb.hpp"
 
 void* mem_alloc(size_t size) {
     size_t paddedSize = size / MEM_BLOCK_SIZE + (size % MEM_BLOCK_SIZE ? 1 : 0);
@@ -55,12 +53,6 @@ int thread_create(thread_t* handle, void (*start_routine)(void*), void* arg) {
     int result;
     __asm__ volatile("mv %0, a0" : "=r" (result));
     return result;
-}
-
-int thread_start(thread_t* handle) {
-    if (!handle) return -1;
-    CCB::startThread(*handle);
-    return 0;
 }
 
 int thread_exit() {

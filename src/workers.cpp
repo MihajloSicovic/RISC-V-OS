@@ -3,7 +3,7 @@
 //
 
 #include "../lib/hw.h"
-#include "../h/ccb.hpp"
+#include "../h/tcb.hpp"
 #include "../h/Semaphore.hpp"
 #include "../test/printing.hpp"
 
@@ -47,7 +47,7 @@ void workerBodyA(void*)
         printString("\n");
     }
 
-    CCB::running->setFinished(true);
+    TCB::running->setFinished(true);
     thread_dispatch();
 }
 
@@ -77,7 +77,7 @@ void workerBodyB(void*)
         printString("\n");
     }
 
-    CCB::running->setFinished(true);
+    TCB::running->setFinished(true);
     thread_dispatch();
 }
 
@@ -90,7 +90,7 @@ void workerBodyC(void*) {
         printString("\n");
         thread_dispatch();
     }
-    CCB::running->setFinished(true);
+    TCB::running->setFinished(true);
     thread_dispatch();
 }
 
@@ -101,6 +101,6 @@ void workerBodyD(void*) {
         printString("\n");
         thread_dispatch();
     }
-    CCB::running->setFinished(true);
+    TCB::running->setFinished(true);
     thread_dispatch();
 }

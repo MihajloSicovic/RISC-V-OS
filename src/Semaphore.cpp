@@ -3,8 +3,7 @@
 //
 
 #include "../h/Semaphore.hpp"
-#include "../h/ccb.hpp"
-#include "../h/syscall_c.hpp"
+#include "../h/tcb.hpp"
 
 namespace ABI {
     Semaphore *Semaphore::createSemaphore(unsigned int init) {
@@ -38,13 +37,13 @@ namespace ABI {
     }
 
     void Semaphore::block() {
-        blocked.addLast(CCB::running);
-        CCB::running->setBlocked(true);
-        CCB::yield();
+        blocked.addLast(TCB::running);
+        TCB::running->setBlocked(true);
+        TCB::yield();
     }
 
     void Semaphore::unblock() {
-        CCB *thread = blocked.removeFirst();
+        TCB *thread = blocked.removeFirst();
         thread->setBlocked(false);
         Scheduler::put(thread);
     }

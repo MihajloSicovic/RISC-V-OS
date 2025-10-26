@@ -79,13 +79,12 @@ public:
     // read register sstatus
     static uint64 r_sstatus();
 
-    // write register sstatus
     static void w_sstatus(uint64 sstatus);
 
+    // handles system calls by performing the demanded operation
     static void handleSyscalls();
 
-    static void handleConsole();
-
+    // function the stvec points to for user induced interrupts
     static void stvecTrap();
 
     //read a0 register

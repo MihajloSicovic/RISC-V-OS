@@ -1,6 +1,6 @@
 .extern _ZN5Riscv14handleSyscallsEv
 
-.align 4
+.align 2
 .global _ZN5Riscv9stvecTrapEv
 .type _ZN5Riscv9stvecTrapEv, @function
 _ZN5Riscv9stvecTrapEv:

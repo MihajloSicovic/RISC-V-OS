@@ -4,6 +4,7 @@
 
 #include "../h/syscall_c.hpp"
 #include "../h/syscall_cpp.hpp"
+#include "../h/tcb.hpp"
 
 
 void Thread::dispatch() {
@@ -18,7 +19,7 @@ Thread::~Thread() {
 }
 
 Thread::Thread() :
-        myHandle(nullptr), body(runWrapper), arg(this) {}
+    myHandle(nullptr), body(runWrapper), arg(this) {}
 
 int Thread::start() {
     return thread_create(&myHandle, body, arg);
